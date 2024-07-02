@@ -1,0 +1,133 @@
+/* style.module.css */
+
+.registerPageContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+  }
+  
+  .leftSideContainer {
+    width: 40%;
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .registerHeading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  label {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #666;
+  }
+  
+  .inputField {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .inputField:focus {
+    border-color: #aaa;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .submitButton {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .submitButton:hover {
+    background-color: #3e8e41;
+  }
+  
+  .alreadyHaveAccountText {
+    font-size: 14px;
+    margin-top: 20px;
+    color: #666;
+  }
+  
+  .alreadyHaveAccountText a {
+    text-decoration: none;
+    color: #4CAF50;
+  }
+  
+  .alreadyHaveAccountText a:hover {
+    color: #3e8e41;
+  }
+  
+  .rightSideContainer {
+    width: 60%;
+    padding: 40px;
+  }
+  
+  .registerImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  /* Animations */
+  
+  .leftSideContainer {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .registerHeading {
+    animation: fadeIn 0.5s ease-in-out 0.2s;
+  }
+  
+  .inputField {
+    animation: fadeIn 0.5s ease-in-out 0.4s;
+  }
+  
+  .submitButton {
+    animation: fadeIn 0.5s ease-in-out 0.6s;
+  }
+  
+  .alreadyHaveAccountText {
+    animation: fadeIn 0.5s ease-in-out 0.8s;
+  }
+  
+  .rightSideContainer {
+    animation: fadeIn 0.5s ease-in-out 1s;
+  }
+  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }

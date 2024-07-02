@@ -1,0 +1,40 @@
+.singleproduct{
+    /* height: calc(100vh - 65px); */
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+}
+
+.left{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    /* z-index: 999; */
+}
+
+.right{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+.leftImg{
+    width: 100% !important;
+    object-fit: cover !important;
+}
+.rightImg{
+    width: 100% !important;
+    object-fit: cover !important;
+    
+}
+
+.mid{
+    position: absolute;
+}

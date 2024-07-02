@@ -1,0 +1,81 @@
+/* components/Navbar.module.css */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    height: 65px;
+  }
+  
+  .left {
+    flex-basis: 20%;
+  }
+  
+  .logo {
+    margin-right: 1rem;
+  }
+  
+  .logo img {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .middle {
+    flex-basis: 60%;
+  }
+  
+  .navLinks {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .navItem {
+    margin-right: 20px;
+  }
+  
+  .navLink {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  
+  .navLink:hover {
+    color: #666;
+  }
+  
+  .right {
+    flex-basis: 20%;
+    text-align: right;
+  }
+  
+  .icons {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .iconItem {
+    margin-right: 20px;
+  }
+  
+  .iconLink {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  
+  .iconLink:hover {
+    color: #666;
+  }
+  
+  .fa-user, .fa-shopping-cart, .fa-list-alt {
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+  }
