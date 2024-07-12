@@ -8,40 +8,41 @@ const Navbar = () => {
     <nav className={styles.navbar}>
       <div className={styles.left}>
         <a href="#" className={styles.logo}>
-          <img src="logo.png" alt="Company Logo" width="30" height="30" />
+          {/* <img src="logo.png" alt="Company Logo" width="30" height="30" /> */}
+          Louvy
         </a>
       </div>
       <div className={styles.middle}>
         <ul className={styles.navLinks}>
           <li className={styles.navItem}>
-            <a href="#" className={styles.navLink}>
+            <Link href="/" className={styles.navLink}>
               Home
-            </a>
+            </Link>
           </li>
           <li className={styles.navItem}>
-            <a href="#" className={styles.navLink}>
+            <Link href="/review" className={styles.navLink}>
               Review
-            </a>
+            </Link>
           </li>
           <li className={styles.navItem}>
-            <a href="#" className={styles.navLink}>
-              Drops
-            </a>
+            <Link href="/collection" className={styles.navLink}>
+              Collection
+            </Link>
           </li>
           <li className={styles.navItem}>
-            <a href="#" className={styles.navLink}>
+            <Link href="/order_summary" className={styles.navLink}>
               All orders
-            </a>
+            </Link>
           </li>
           <li className={styles.navItem}>
-            <a href="#" className={styles.navLink}>
+            <Link href="/aboutus" className={styles.navLink}>
               About Us
-            </a>
+            </Link>
           </li>
           <li className={styles.navItem}>
-            <a href="#" className={styles.navLink}>
+            <Link href="/contact" className={styles.navLink}>
               Contact
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
@@ -49,12 +50,13 @@ const Navbar = () => {
         <ul className={styles.icons}>
           <li className={styles.iconItem}>
             <Link href="/cart" className={styles.iconLink}>
-              <CiShoppingCart className="fas fa-shopping-cart" />
+              <CiShoppingCart className="fas fa-shopping-cart" size={30}/>
             </Link>
+            <span className={styles.cartItemNum}>1</span>
           </li>
           <li className={styles.iconItem}>
             <Link href="/profile" className={styles.iconLink}>
-              <CiUser className="fas fa-list-alt" />
+              <CiUser className="fas fa-list-alt" size={30}/>
             </Link>
           </li>
         </ul>

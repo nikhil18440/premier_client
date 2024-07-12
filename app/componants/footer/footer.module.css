@@ -1,0 +1,43 @@
+.footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid black;
+}
+
+.footerTop{
+    display: flex;
+    width: 100%;
+}
+
+.footerbottom{
+    width: 90%;
+    border-top: 1px solid rgb(146, 146, 146);
+    text-align: center;
+    padding: 10px;
+}
+
+.sec1, .sec2, .sec3{
+    flex: 1;
+    padding: 3rem;
+    display: flex;
+    /* align-items: center; */
+    /* justify-content: center; */
+    flex-direction: column;
+}
+
+.footerDesc{
+    width: 80%;
+}
+
+
+
+.sec1 > ul{
+    display: flex;
+    margin-top: 10px;
+}
+
+.sec1 > ul > li{
+    margin-right: 1rem;
+}

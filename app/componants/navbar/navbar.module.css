@@ -79,3 +79,24 @@
     font-size: 1.5rem;
     margin-right: 0.5rem;
   }
+
+  .iconItem{
+    position: relative;
+  }
+
+  .cartItemNum{
+    background-color: rgb(0, 132, 255);
+    position: absolute;
+    right: -10px;
+    top: 0px;
+    width: 15px;
+    height: 15px;
+    padding: 5px;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: xx-small;
+  }

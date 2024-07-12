@@ -1,8 +1,14 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import 'react-multi-carousel/lib/styles.css';
+import {Montserrat} from 'next/font/google'
+import { ReduxProvider } from "./redux/reduxProvider";
 
 const inter = Inter({ subsets: ["latin"] });
+const montserrat = Montserrat({
+  weight: '400',
+  subsets: ["latin"]
+})
 
 export const metadata = {
   title: "Create Next App",
@@ -12,7 +18,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={montserrat.className}>
+        <ReduxProvider>
+        {children}
+        </ReduxProvider>
+      </body>
     </html>
   );
 }

@@ -1,0 +1,14 @@
+.terms{
+    display: flex;
+    flex-direction: column;
+    padding: 5rem 22rem;
+}
+
+.terms > p{
+    padding-bottom: 3rem;
+    line-height: 30px;
+}
+.terms > h4{
+    padding-bottom: 2rem;
+    /* font-family: sans-serif !important; */
+}

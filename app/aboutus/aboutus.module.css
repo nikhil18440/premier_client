@@ -1,0 +1,31 @@
+.aboutus{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.aboutusImg{
+    width: 100vw;
+    object-fit: cover;
+    margin-bottom: 3rem;
+}
+
+.aboutusDiv{
+    width: 50%;
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    flex-direction: column;
+}
+
+.aboutusDiv > h4{
+    margin-bottom: 2rem;
+}
+.aboutusDiv > h3{
+    margin-bottom: 2rem;
+}
+.aboutusDiv > p{
+    margin-bottom: 4rem;
+    line-height: 35px;
+}
