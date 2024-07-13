@@ -1,10 +1,16 @@
+"use client"
 import { createSlice } from "@reduxjs/toolkit";
+import { useEffect } from "react";
+
+
+const getUSer = JSON.parse(sessionStorage.getItem('user'))
+
 
 const userSlice = createSlice({
     name: "user",
     initialState: {
         // JSON.parse(sessionStorage.getItem('user')) ||
-        user:  null ,
+        user: getUSer || null ,
         isFetching: false,
         error: false
     },

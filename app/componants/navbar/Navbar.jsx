@@ -1,9 +1,14 @@
 // components/Navbar.js
+"use client"
 import Link from 'next/link';
 import styles from './navbar.module.css';
 import {CiUser,CiShoppingCart} from 'react-icons/ci'
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
+
+  const userStore = useSelector(state => state.user)
+
   return (
     <nav className={styles.navbar}>
       <div className={styles.left}>
@@ -47,7 +52,8 @@ const Navbar = () => {
         </ul>
       </div>
       <div className={styles.right}>
-        <ul className={styles.icons}>
+        {
+          userStore.user ? <ul className={styles.icons}>
           <li className={styles.iconItem}>
             <Link href="/cart" className={styles.iconLink}>
               <CiShoppingCart className="fas fa-shopping-cart" size={30}/>
@@ -59,7 +65,11 @@ const Navbar = () => {
               <CiUser className="fas fa-list-alt" size={30}/>
             </Link>
           </li>
-        </ul>
+        </ul> : <div className={styles.rightBtns}>
+          <button className={styles.loginBtn}>login</button>
+          <button className={styles.registerBtn}>signup</button>
+        </div>
+        }
       </div>
     </nav>
   );

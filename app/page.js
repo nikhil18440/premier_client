@@ -4,33 +4,30 @@ import Navbar from "./componants/navbar/Navbar";
 import Footer from "./componants/footer/Footer";
 import prod from '../public/prods.jpg'
 import axios from "axios";
-import ClientComp from "./singledrop/clientComponant";
+import ClientComp from "./clientComps.jsx";
 
 export default async function Home() {
 
   async function getData() {
-    const res = await axios.get(`${process.env.API_ENDPOINT}/product?new=true`)
-    return res.data
+    try {
+      const res = await axios.get(`${process.env.API_ENDPOINT}/product?new=true`)
+      return res.data
+    } catch (error) {
+      console.log(error)
+    }
   }
   
-  const data = await getData()
+  var data = await getData()
+  data = JSON.stringify(data)
+  console.log(data)
 
+  
 
   return (
     <>
     <Navbar/>
     
-    {
-      data.map((item,i) => (
-        <div className={styles.prodDiv} key={i}>
-          <img src={item.images[0]} className={styles.prodImg}/>
-          <div className={styles.prodText}>
-            <h4>{item.title}</h4>
-            <button className={styles.shopbtn}>Shop now</button>
-          </div>
-        </div>
-      ))
-    }
+    <ClientComp data={data}/>
 
     <Footer/>
     </>

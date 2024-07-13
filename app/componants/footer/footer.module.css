@@ -41,3 +41,18 @@
 .sec1 > ul > li{
     margin-right: 1rem;
 }
+
+.sec2 > ul > li{
+    margin-top: 10px;
+}
+.sec3 > ul > li{
+    margin-top: 10px;
+}
+
+.sec1 > ul > li, .footerDesc{
+    margin-top: 10px;
+}
+
+.sec3 > ul > li:hover, .sec2 > ul > li :hover{
+    color: gray;
+}

@@ -9,20 +9,22 @@ export default async function ServerComp(props) {
     const prodId = props.searchParams.id
 
     async function getData() {
-        const res = await axios.get(`${process.env.API_ENDPOINT}/product/${prodId}`)
-        
-        if(!res.ok){
-            console.log(res.data)
-        }else{
-            console.log(res.data)
+        try {
+          const res = await axios.get(`${process.env.API_ENDPOINT}/product/${prodId}`)
+          return res.data
+        } catch (error) {
+          console.log(error)
         }
-        
-        return res.data
     }
     
 
     const data = await getData()
-    var dataStr = JSON.stringify(data)
+    var dataStr
+    if(data){
+      dataStr = JSON.stringify(data)
+    }else{
+      dataStr = null
+    }
 
     
 

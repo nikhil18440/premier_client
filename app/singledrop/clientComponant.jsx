@@ -24,8 +24,12 @@ export default function ClientComp(props) {
 
   // getting each product from api
   
-
-  const data = JSON.parse(props.data)
+  var data
+  if(props.data!==null){
+    data = JSON.parse(props.data)
+  }else{
+    data = null
+  }
 
   // importing carts and user store
   // const user = useSelector(state => state.user)
@@ -58,6 +62,8 @@ export default function ClientComp(props) {
   // const images = [prod, prod2, prod3, tshirt, tshirt2];
   const images = [prods,prods,prods,prods,prods];
 
+  console.log(data)
+
   return (
     <>
       
@@ -65,7 +71,10 @@ export default function ClientComp(props) {
       <div className={styles.singleproduct}>
        
         <div className={styles.top}>
-          <div className={styles.left}>
+          {
+            data ? 
+            <>
+            <div className={styles.left}>
             <img className={styles.leftImg} src={data.images[0]} width={700} height={700} objectFit='cover'/>
             <img className={styles.leftImg} src={data.images[1]} width={700} height={700} objectFit='cover'/>
             <img className={styles.leftImg} src={data.images[2]} width={700} height={700} objectFit='cover'/>
@@ -74,7 +83,6 @@ export default function ClientComp(props) {
           </div>
 
           <div className={styles.right}>
-            {/* <div className={styles.rightcontainer}> */}
             <div className={styles.rightTop}>
             <h1 className={styles.righthead}>{data.title}</h1>
             <h4 className={styles.rightprice}>&#8377; {data.price}</h4>
@@ -100,12 +108,12 @@ export default function ClientComp(props) {
             </form>
             <label><input type="number" className={styles.qty} name="myNumber" value={qty}  min={1} max={100} onChange={onChange}/> qty</label>
             <button className={styles.cartBtn}>ADD TO SHOPPING BAG</button>
-            {/* </div> */}
+           
           </div>
+          </> : <></>
+          }
 
-          {/* <div className={styles.right}>
-            <Image className={styles.leftImg} src={tshirt2} width={700} height={700} objectFit='cover'/>
-          </div> */}
+          
         </div>
 
         <div className={styles.bottom}>

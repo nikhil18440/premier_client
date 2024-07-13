@@ -24,15 +24,12 @@ export default async function page() {
 
   // fetching data from api
   async function getData() {
-    const res = await axios.get(`${process.env.API_ENDPOINT}/product/`)
-  
-    if(!res.ok){
-      console.log(res.data)
-    }else{
-      console.log(res.data)
+    try {
+      const res = await axios.get(`${process.env.API_ENDPOINT}/product/`)
+      return res.data
+    } catch (error) {
+      console.log(error)
     }
-  
-    return res.data
   }
   
 
@@ -57,7 +54,7 @@ export default async function page() {
     <div className={styles.container}>
        
           {
-            data.map((item,i) => (
+            data ? data.map((item,i) => (
               <div className={styles.prod} key={i}>
                 <Link href={{
                   pathname:`/singledrop`,
@@ -71,7 +68,7 @@ export default async function page() {
                 <h4 className={styles.prodTitle}>{item.title}</h4>
                 <h4 className={styles.prodPrice}>{item.price}</h4>
               </div>
-            ))
+            )) : <></>
           }
 
         {/* </div> */}

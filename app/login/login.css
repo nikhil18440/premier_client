@@ -31,6 +31,7 @@
     background-color: #fff;
     /* border: 1px solid #ddd; */
     /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+    overflow: hidden;
   }
   
   /* Image Container */
@@ -109,6 +110,16 @@
   .loginPageContainer {
     animation: fadeIn 0.5s ease;
   }
+
+  .errorMsg{
+    color: red;
+    font-size: 15px;
+  }
+
+
+
+
+
   
   @keyframes fadeIn {
     0% {
