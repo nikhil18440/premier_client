@@ -2,7 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import 'react-multi-carousel/lib/styles.css';
 import {Montserrat} from 'next/font/google'
-import { ReduxProvider } from "./redux/reduxProvider";
+import { ReduxProvider } from "../redux/reduxProvider";
 import Providers from "./provider";
 import { Toaster } from "react-hot-toast";
 

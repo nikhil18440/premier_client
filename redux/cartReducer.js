@@ -2,11 +2,11 @@
 import {createSlice} from '@reduxjs/toolkit'
 import { useEffect } from 'react'
 
-var getCart
-useEffect(() => {
-    getCart = JSON.parse(window.sessionStorage.getItem('cartId'))
+// var getCart
+var getCart = JSON.parse(window.sessionStorage.getItem('cartId'))
+// useEffect(() => {
 
-}, [])
+// }, [])
 
 const cartSlice = createSlice({
     name: "cart",

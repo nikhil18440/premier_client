@@ -6,8 +6,8 @@ import styles from "./page.module.css";
 import prod from '../public/prods.jpg'
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
-import { setCart } from './redux/cartReducer';
-import Navbar from './componants/navbar/Navbar';
+import { setCart } from '../redux/cartReducer';
+import Navbar from '../componants/navbar/Navbar';
 
 export default function ClientComp(props) {
 
@@ -30,7 +30,8 @@ export default function ClientComp(props) {
     const cartStore = useSelector(state => state.cart)
   const userStore = useSelector(state => state.user)
 
-  const token  = `Bearer ${JSON.parse(sessionStorage.getItem('token'))}`
+  var token = null
+  
 
     
 
@@ -74,6 +75,7 @@ export default function ClientComp(props) {
 
 useEffect(() => {
   if(userStore.user){
+    token  = `Bearer ${JSON.parse(window.sessionStorage.getItem('token'))}`
     findcart()
   }
 }, [userStore.user])

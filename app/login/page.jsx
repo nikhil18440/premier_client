@@ -8,9 +8,9 @@ import model from '../../public/kndl.jpg'
 import Image from 'next/image';
 import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
-import { userFetchFailure, userFetchStart, userFetchSuccess } from '../redux/userReducer';
-import Navbar from '../componants/navbar/Navbar';
-import Footer from '../componants/footer/Footer';
+import { userFetchFailure, userFetchStart, userFetchSuccess } from '../../redux/userReducer';
+import Navbar from '../../componants/navbar/Navbar';
+import Footer from '../../componants/footer/Footer';
 
 function LoginPage() {
 

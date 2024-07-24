@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styles from "./page.module.css";
-import Navbar from "./componants/navbar/Navbar";
-import Footer from "./componants/footer/Footer";
+// import Navbar from "./componants/navbar/Navbar";
+import Footer from "../componants/footer/Footer";
 import prod from '../public/prods.jpg'
 import axios from "axios";
 import ClientComp from "./clientComps.jsx";

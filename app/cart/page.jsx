@@ -1,8 +1,8 @@
 "use client"
 import React, { useEffect, useState } from 'react'
-import Navbar from '../componants/navbar/Navbar'
+import Navbar from '../../componants/navbar/Navbar'
 import ClientComp from './clientComp'
-import Footer from '../componants/footer/Footer'
+import Footer from '../../componants/footer/Footer'
 import { useSelector } from 'react-redux'
 import axios from 'axios'
 
@@ -27,8 +27,10 @@ export default function page() {
 
     
     if(rendered){
-        findProd()
+        if(cart){
+            findProd()
         setRendered(false)
+        }
     }
     
     

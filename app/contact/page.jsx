@@ -1,8 +1,8 @@
 'use client'
 import React, { useState } from 'react';
 import styles from './contact.module.css';
-import Navbar from '../componants/navbar/Navbar';
-import Footer from '../componants/footer/Footer';
+import Navbar from '../../componants/navbar/Navbar';
+import Footer from '../../componants/footer/Footer';
 import emailjs from '@emailjs/browser';
 import toast from 'react-hot-toast'; // Import ToastContainer
 

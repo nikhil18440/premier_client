@@ -1,7 +1,7 @@
 import axios from 'axios'
 import ClientComp from './clientComponant'
-import Navbar from '@/app/componants/navbar/Navbar'
-import Footer from '@/app/componants/footer/Footer'
+import Navbar from '../../componants/navbar/Navbar'
+import Footer from '../../componants/footer/Footer'
 
 
 export default async function ServerComp(props) {

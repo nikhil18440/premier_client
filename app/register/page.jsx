@@ -5,8 +5,8 @@ import './register.css'
 import Link from 'next/link';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import Navbar from '../componants/navbar/Navbar';
-import Footer from '../componants/footer/Footer';
+import Navbar from '../../componants/navbar/Navbar';
+import Footer from '../../componants/footer/Footer';
 
 const RegisterPage = () => {
 

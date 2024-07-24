@@ -1,11 +1,11 @@
 "use client"
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 import styles from './profile.module.css';
-import Navbar from '../componants/navbar/Navbar';
-import Footer from '../componants/footer/Footer';
+import Navbar from '../../componants/navbar/Navbar';
+import Footer from '../../componants/footer/Footer';
 import { useDispatch, useSelector } from 'react-redux';
 import { redirect } from 'next/navigation';
-import { userFetchFailure, userFetchStart, userFetchSuccess } from '../redux/userReducer';
+import { userFetchFailure, userFetchStart, userFetchSuccess } from '../../redux/userReducer';
 import axios from 'axios';
 
 const ProfilePage = () => {

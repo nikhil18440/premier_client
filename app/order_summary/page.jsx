@@ -2,8 +2,8 @@ import React from 'react';
 import styles from './orders.module.css';
 import prod from '../../public/prods.jpg'
 import Image from 'next/image';
-import Navbar from '../componants/navbar/Navbar';
-import Footer from '../componants/footer/Footer';
+import Navbar from '../../componants/navbar/Navbar';
+import Footer from '../../componants/footer/Footer';
 
 export default function OrderPage() {
   const orders = [

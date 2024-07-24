@@ -1,6 +1,6 @@
 import React from 'react'
-import Navbar from '../componants/navbar/Navbar'
-import Footer from '../componants/footer/Footer'
+import Navbar from '../../componants/navbar/Navbar'
+import Footer from '../../componants/footer/Footer'
 import styles from './terms.module.css'
 import { names } from '../general_names'
 
