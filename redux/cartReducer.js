@@ -3,7 +3,10 @@ import {createSlice} from '@reduxjs/toolkit'
 import { useEffect } from 'react'
 
 // var getCart
-var getCart = JSON.parse(window.sessionStorage.getItem('cartId'))
+var getCart
+if(typeof window !== 'undefined'){
+    getCart = JSON.parse(window.sessionStorage.getItem('cartId'))
+}
 // useEffect(() => {
 
 // }, [])
