@@ -2,9 +2,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { useEffect } from "react";
 
+var getUSer
+useEffect(() => {
+    getUSer = JSON.parse(window.sessionStorage.getItem('user'))
 
-const getUSer = JSON.parse(window.sessionStorage.getItem('user'))
-
+}, [])
 
 const userSlice = createSlice({
     name: "user",

@@ -1,7 +1,12 @@
 "use client"
 import {createSlice} from '@reduxjs/toolkit'
+import { useEffect } from 'react'
 
-const getCart = JSON.parse(window.sessionStorage.getItem('cartId'))
+var getCart
+useEffect(() => {
+    getCart = JSON.parse(window.sessionStorage.getItem('cartId'))
+
+}, [])
 
 const cartSlice = createSlice({
     name: "cart",
