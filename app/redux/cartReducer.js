@@ -1,11 +1,14 @@
+"use client"
 import {createSlice} from '@reduxjs/toolkit'
+
+const getCart = JSON.parse(window.sessionStorage.getItem('cartId'))
 
 const cartSlice = createSlice({
     name: "cart",
     initialState: {
-        cart: null,
+        cart: getCart || null,
         quantity: 0,
-        total: 0
+        total: getCart ? getCart.total : 0
     },
     reducers: {
         setCart: (state,action) => {
@@ -16,7 +19,8 @@ const cartSlice = createSlice({
         addProduct: (state,action) => {
             state.quantity = state.quantity + 1
             state.cart.products.push(action.payload)
-            state.total = state.total + action.payload.price
+            sessionStorage.setItem('cartId',JSON.stringify(state.cart))
+            // state.total = state.total + action.payload.price
         },
         delProduct: (state,action) => {
             state.quantity = state.quantity - 1
@@ -24,7 +28,7 @@ const cartSlice = createSlice({
             state.total = state.total - action.payload.price
         },
         setCartTotal: (state,action) => {
-            state.total += action.payload
+            state.total = action.payload
         }
     }
 })

@@ -1,33 +1,81 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import styles from './profile.module.css';
 import Navbar from '../componants/navbar/Navbar';
 import Footer from '../componants/footer/Footer';
+import { useDispatch, useSelector } from 'react-redux';
+import { redirect } from 'next/navigation';
+import { userFetchFailure, userFetchStart, userFetchSuccess } from '../redux/userReducer';
+import axios from 'axios';
 
 const ProfilePage = () => {
+
+  const userStore = useSelector(state => state.user)
+
+  useLayoutEffect(() => {
+    if(userStore.user === null){
+      redirect('/')
+    }
+  }, [])
+
+  
+  
   const [editing, setEditing] = useState(false);
   const [profile, setProfile] = useState({
-    firstName: 'John',
-    lastName: 'Doe',
-    email: 'johndoe@example.com',
-    address: '123 Main St',
-    pincode: '12345',
-    phoneNumber: '123-456-7890',
-    state: 'California'
+    firstName: null,
+    lastName: null,
+    email: null,
+    address: null,
+    pincode: null,
+    phoneNumber: null,
+    state: null
   });
+  
+  useEffect(() => {
+    if(userStore.user){
+      setProfile(userStore.user)
+    }
+  }, [userStore.user])
+  
+
 
   const handleEdit = () => {
     setEditing(true);
   };
 
-  const handleSave = () => {
+  const dispatch = useDispatch()
+
+  
+
+  const handleSave = async () => {
     setEditing(false);
+    try {
+      dispatch(userFetchStart())
+      const res = await axios.put(`${process.env.API_ENDPOINT}/user/${userStore.user._id}`, profile,{
+        headers: {
+          token: `Bearer ${JSON.parse(sessionStorage.getItem('token'))}`
+        }
+      })
+      if(res.data){
+        dispatch(userFetchSuccess(res.data))
+        sessionStorage.setItem('user', JSON.stringify(profile))
+      }
+    } catch (error) {
+      dispatch(userFetchFailure())
+    }
   };
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setProfile({ ...profile, [name]: value });
   };
+
+  
+
+  function handleLogout() {
+    sessionStorage.clear()
+    window.location.reload()
+  }
 
   return (
     <>
@@ -119,11 +167,17 @@ const ProfilePage = () => {
           <span>{profile.state}</span>
         )}
       </div>
+      <div className={styles.btnDiv}>
       {editing ? (
         <button className={styles.btn} onClick={handleSave}>Save Changes</button>
       ) : (
         <button className={styles.btn} onClick={handleEdit}>Edit Profile</button>
       )}
+
+      {
+        userStore.user !== null ? <button className={styles.logout} onClick={handleLogout}>Logout</button> : <></>
+      }
+      </div>
     </div>
     <Footer/>
     </>

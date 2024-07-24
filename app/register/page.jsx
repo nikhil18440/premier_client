@@ -5,6 +5,8 @@ import './register.css'
 import Link from 'next/link';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import Navbar from '../componants/navbar/Navbar';
+import Footer from '../componants/footer/Footer';
 
 const RegisterPage = () => {
 
@@ -42,6 +44,8 @@ const RegisterPage = () => {
   const router = useRouter()
 
   return (
+    <>
+    <Navbar/>
     <div className='registerPageContainer'>
       <div className='leftSideContainer'>
         <h1 className='registerHeading'>Register</h1>
@@ -66,6 +70,8 @@ const RegisterPage = () => {
         <img className='registerImage' src="/register-image.jpg" alt="Register Image" />
       </div>
     </div>
+    <Footer/>
+    </>
   );
 };
 

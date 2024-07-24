@@ -23,12 +23,11 @@ export default async function Home() {
 
   
 
-  return (
-    <>
-    <Navbar/>
-    
-    <ClientComp data={data}/>
+  
 
+  return (
+    <> 
+    <ClientComp data={data}/>
     <Footer/>
     </>
   );

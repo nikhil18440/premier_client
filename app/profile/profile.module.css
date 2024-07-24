@@ -52,3 +52,21 @@
     cursor: pointer;
     margin-top: 20px;
   }
+
+  .btnDiv{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logout{
+    background-color: rgb(149, 0, 0);
+    padding: 0.5rem 2rem;
+    border: none;
+    outline: none;
+    color: white;
+    cursor: pointer;
+    margin-top: 20px;
+    float: right;
+
+  }

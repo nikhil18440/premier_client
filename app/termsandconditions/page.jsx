@@ -2,6 +2,7 @@ import React from 'react'
 import Navbar from '../componants/navbar/Navbar'
 import Footer from '../componants/footer/Footer'
 import styles from './terms.module.css'
+import { names } from '../general_names'
 
 export default function page() {
   return (
@@ -45,11 +46,10 @@ export default function page() {
         </p>
 
         <h4>5. Shipping and Delivery</h4>
-        <p>We ship to various locations worldwide. Shipping charges and delivery times will be calculated and displayed at checkout. Please note that delivery times are estimates and are not guaranteed. Louvy is not responsible for delays caused by shipping carriers or customs clearance.</p>
+        <p>We ship to various locations in India. Shipping charges and delivery times will be calculated and displayed at checkout. Please note that delivery times are estimates and are not guaranteed. Louvy is not responsible for delays caused by shipping carriers or customs clearance.</p>
 
         <h4>6. Returns and Refunds</h4>
-        <p>We offer a 30-day return policy on most items. Items must be returned in their original condition and packaging. To initiate a return, please contact our customer support team at support@louvy.com.
-        Refunds will be processed within 7-10 business days of receiving the returned item. Shipping costs are non-refundable.</p>
+        <p>There are currently no refunds and returns available. For further information please view our return policy</p>
 
         <h4>7. Limitation of Liability</h4>
         <p>Louvy will not be liable for any direct, indirect, incidental, special, consequential, or punitive damages, or any other damages of any kind, arising out of or related to your use of the site or the products purchased.
@@ -60,11 +60,11 @@ export default function page() {
         </p>
 
         <h4>9. Governing Law</h4>
-        <p>These Terms shall be governed and construed in accordance with the laws of [Insert Jurisdiction], without regard to its conflict of law provisions.
+        <p>These Terms shall be governed and construed in accordance with the laws of [Indian Jurisdiction], without regard to its conflict of law provisions.
         </p>
 
         <h4>10. Contact Us</h4>
-        <p>If you have any questions about these Terms, please contact us at support@louvy.com or [Insert Phone Number Here].</p>
+        <p>If you have any questions about these Terms, please contact us at {names.email} or {names.pNumber}.</p>
 
     </div>
 

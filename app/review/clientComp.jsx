@@ -11,7 +11,7 @@ export default function ClientComp(props) {
 
     const [hover, setHover] = useState(0);
 
-    const data = JSON.parse(props.data)
+    const data = JSON.parse(props.data) || null
 
 
     function handleRating(stars) {

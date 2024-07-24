@@ -1,30 +1,9 @@
-// components/Navbar.js
-"use client"
-import Link from 'next/link';
-import styles from './navbar.module.css';
-import {CiUser,CiShoppingCart} from 'react-icons/ci'
-import { useSelector } from 'react-redux';
+import React from 'react'
 
-const Navbar = () => {
-
-  const userStore = useSelector(state => state.user)
-  const cartStore = useSelector(state => state.cart)
-
-  var cartNum = null
-
-  if(cartStore.cart){
-    cartNum = cartStore.cart.products.length
-  }
-
+export default function navbarSm() {
   return (
-    <nav className={styles.navbar}>
-      <div className={styles.left}>
-        <a href="#" className={styles.logo}>
-          {/* <img src="logo.png" alt="Company Logo" width="30" height="30" /> */}
-          Louvy
-        </a>
-      </div>
-      <div className={styles.middle}>
+    <div>
+        <div className={styles.middle}>
         <ul className={styles.navLinks}>
           <li className={styles.navItem}>
             <Link href="/" className={styles.navLink}>
@@ -80,8 +59,6 @@ const Navbar = () => {
         </div>
         }
       </div>
-    </nav>
-  );
-};
-
-export default Navbar;
+    </div>
+  )
+}

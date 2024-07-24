@@ -3,6 +3,8 @@ import "./globals.css";
 import 'react-multi-carousel/lib/styles.css';
 import {Montserrat} from 'next/font/google'
 import { ReduxProvider } from "./redux/reduxProvider";
+import Providers from "./provider";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 const montserrat = Montserrat({
@@ -20,7 +22,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={montserrat.className}>
         <ReduxProvider>
-        {children}
+          <Toaster position="bottom-center"/>
+          {children}
         </ReduxProvider>
       </body>
     </html>

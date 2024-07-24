@@ -13,10 +13,12 @@ import Navbar from '../componants/navbar/Navbar.jsx';
 // import {Swiper} from 'wiper';
 import Sliding from '../componants/swiper/Swiper.jsx';
 import Footer from '../componants/footer/Footer.jsx';
-import { useSelector } from 'react-redux';
-import { setCart,addProduct,delProduct } from '../redux/cartReducer.js';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCart,addProduct,delProduct, setCartTotal } from '../redux/cartReducer.js';
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
+import { redirect } from 'next/navigation';
+import handleSubmitFunc from './scripts';
 // import 'wiper/swiper-bundle.css'
 
 export default function ClientComp(props) {
@@ -32,19 +34,24 @@ export default function ClientComp(props) {
   }
 
   // importing carts and user store
-  // const user = useSelector(state => state.user)
-  // const cart = useSelector(state => state.cart)
+  const userStore = useSelector(state => state.user)
+  const cartStore = useSelector(state => state.cart)
 
-
+  const token = JSON.parse(sessionStorage.getItem('token'))
 
 
   const [qty, setQty] = useState(1);
+  const [Size, setSize] = useState();
   const [hoveredImage, setHoveredImage] = useState(null);
 
   const [clr, setClr] = useState('red')
 
   const onSlctClr = (e) => {
     setClr(e.target.value)
+  }
+
+  const onSlctSize = (e) => {
+    setSize(e.target.value)
   }
 
   const onChange = (e) => {
@@ -62,7 +69,79 @@ export default function ClientComp(props) {
   // const images = [prod, prod2, prod3, tshirt, tshirt2];
   const images = [prods,prods,prods,prods,prods];
 
-  console.log(data)
+
+  const dispatch = useDispatch()
+
+  const [noUser, setNoUser] = useState(false)
+  const makeLogin = useLayoutEffect(() => {
+    if(noUser){
+      redirect('/login')
+    }
+  }, [noUser])
+
+  const [addedProd, setaddedProd] = useState(null)
+
+  useEffect(() => {
+    if(addedProd){
+      dispatch(addProduct(prod))
+      console.log("datatttt:", addedProd.data)   
+      dispatch(setCart(addedProd.data))
+      sessionStorage.setItem('cartId',JSON.stringify(addedProd.data))
+      console.log("carttt1:",cartStore.cart)
+      console.log("carttt2:",cartStore.cart)
+    }
+  }, [addedProd])
+  
+
+
+  async function handleSubmit() {
+
+    const saveCart = await handleSubmitFunc(userStore,cartStore,Size,qty,data,token)
+    // dispatch(setCartTotal(parseInt(data.price * qty)))
+    let prod = {
+      productId: data._id,
+      size: Size,
+      quantity: qty
+    }
+    dispatch(addProduct(prod))
+    dispatch(setCart(saveCart))
+    dispatch(setCartTotal(saveCart.total))
+    // setaddedProd(res)
+    console.log(saveCart)
+
+    // if(userStore.user){
+    //   try {
+    //     console.log(userStore.user._id, cartStore.cart._id)
+    //     let prod = {
+    //       productId: data._id,
+    //       size: Size,
+    //       quantity: qty
+    //     }
+    //     const res = await axios.put(`${process.env.API_ENDPOINT}/cart/${userStore.user._id}`,{
+    //       // userId: userStore.user._id,
+    //       _id: cartStore.cart._id,
+    //       products: [...cartStore.cart.products, prod],
+    //       total: cartStore.total + (data.price * qty)
+    //     },{
+    //       headers: {
+    //         token: `Bearer ${token}`
+    //       }
+    //     })
+    //     // if (res.data) {
+    //     dispatch(setCartTotal(parseInt(data.price * qty)))
+    //     setaddedProd(res)
+
+        
+    //   } catch (error) {
+    //     console.log(error)
+    //   }
+    // }else{
+    //   setNoUser(true)
+    // }
+    
+    
+  }
+
 
   return (
     <>
@@ -98,16 +177,16 @@ export default function ClientComp(props) {
             <form>
               <h3 className={styles.sizeName}>Select size</h3>
               <div className={styles.buttonssize}>
-              <label><input type="radio" name="options" value="option1"/> xs</label>
-              <label><input type="radio" name="options" value="option2"/> s</label>
-              <label><input type="radio" name="options" value="option3"/> m</label>
-              <label><input type="radio" name="options" value="option1"/> l</label>
-              <label><input type="radio" name="options" value="option2"/> xl</label>
-              <label><input type="radio" name="options" value="option3"/> xxl</label>
+              <label><input type="radio" name="options" value="xs" onChange={onSlctSize} /> xs</label>
+              <label><input type="radio" name="options" value="s" onChange={onSlctSize} /> s</label>
+              <label><input type="radio" name="options" value="m" onChange={onSlctSize}/> m</label>
+              <label><input type="radio" name="options" value="l" onChange={onSlctSize}/> l</label>
+              <label><input type="radio" name="options" value="xl" onChange={onSlctSize}/> xl</label>
+              <label><input type="radio" name="options" value="xxl" onChange={onSlctSize}/> xxl</label>
               </div>
             </form>
             <label><input type="number" className={styles.qty} name="myNumber" value={qty}  min={1} max={100} onChange={onChange}/> qty</label>
-            <button className={styles.cartBtn}>ADD TO SHOPPING BAG</button>
+            <button className={styles.cartBtn} onClick={handleSubmit}>ADD TO SHOPPING BAG</button>
            
           </div>
           </> : <></>

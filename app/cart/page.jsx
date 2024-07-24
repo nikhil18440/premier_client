@@ -1,52 +1,57 @@
-import React from 'react'
-import styles from './cart.module.css'
-import Image from 'next/image'
-// import prod from '../../public/prod.jpg'
-import prod from '../../public/bag.jpeg'
+"use client"
+import React, { useEffect, useState } from 'react'
 import Navbar from '../componants/navbar/Navbar'
+import ClientComp from './clientComp'
 import Footer from '../componants/footer/Footer'
+import { useSelector } from 'react-redux'
+import axios from 'axios'
 
 export default function page() {
+
+    // async function getData() {
+    //     const res = await axios.get(`${process.env.API_ENDPOINT}/cart`)  
+    //     return res.data
+    // }
+    
+
+    // const data = await getData()
+    // var dataStr = JSON.stringify(data)
+
+    // var cart = JSON.parse(sessionStorage.getItem('cartID'))
+    const cartStore = useSelector(state => state.cart)
+    const cart = cartStore.cart
+
+    const [prodArr, setprodArr] = useState([])
+    
+    const [rendered, setRendered] = useState(true)
+
+    
+    if(rendered){
+        findProd()
+        setRendered(false)
+    }
+    
+    
+
+    async function findProd() {
+        console.log('hi')
+        for (let i = 0; i < cart.products.length; i++) {
+            const prodId = cart.products[i].productId
+            try {
+                const res = await axios.get(`${process.env.API_ENDPOINT}/product/${prodId}`)
+                setprodArr(state=>[...state,[res.data, cart.products[i].size, cart.products[i].quantity]])
+                console.log(prodArr)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+    }
+    
+
   return (
     <>
     <Navbar/>
-    <div className={styles.cart}>
-
-        <div className={styles.left}>
-
-            <div className={styles.leftprod}>
-                <Image className={styles.leftprodImg} src={prod} width={200} height={300} objectFit='cover'/>
-                <div className={styles.prodDetails}>
-                    <div className={styles.prodDetailstop}>
-                        <div className={styles.prodDetailstopleft}>
-                            <h3>Product Name</h3>
-                            <p>Color: red</p>
-                            <p>Size: s</p>
-                            <p>Quantity: 1</p>
-                        </div>
-                        <div className={styles.prodDetailstopright}>
-                            <p>Product Price</p>
-                        </div>
-                    </div>
-                    <button className={styles.prodDetailsbottom}>
-                        remove
-                    </button>
-                </div>
-            </div>
-            
-        </div>
-
-        <div className={styles.right}>
-            <div className={styles.checkout}>
-            <div className={styles.total}>
-                <h4>SUBTOTAL</h4>
-                <h4>&#8377; 900</h4>
-            </div>
-            <button className={styles.rightCheckout}>CHECKOUT</button>
-            </div>
-        </div>
-
-    </div>
+    <ClientComp prodArr={prodArr}/>
     <Footer/>
     </>
   )

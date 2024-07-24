@@ -1,5 +1,5 @@
 .cart{
-    height: 100vh;
+    /* height: 100vh; */
     display: flex;
     
 }
@@ -62,6 +62,10 @@
     justify-content: space-between;
     /* align-items: center; */
     
+}
+
+.prodDetailstopleft>p{
+    margin-top: 8px;
 }
 
 .prodDetailsbottom{

@@ -57,7 +57,7 @@ export default function Footer() {
                     <Link href='/termsandconditions'>terms and conditions</Link>
                 </li>
                 <li>
-                    <Link href='/contact'>return policy</Link>
+                    <Link href='/returnpolicy'>return policy</Link>
                 </li>
             </ul>
         </section>
