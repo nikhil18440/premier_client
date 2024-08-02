@@ -29,9 +29,7 @@ export default async function Page() {
   return (
     
     <>
-    <Navbar/>
     <ClientComp data={dataStr}/>
-    <Footer/>
     </>
 
   )

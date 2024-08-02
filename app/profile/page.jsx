@@ -79,7 +79,6 @@ const ProfilePage = () => {
 
   return (
     <>
-    <Navbar/>
     <div className={styles.container}>
       <h1>Profile Page</h1>
       <div className={styles.profileInfo}>
@@ -179,7 +178,6 @@ const ProfilePage = () => {
       }
       </div>
     </div>
-    <Footer/>
     </>
   );
 };

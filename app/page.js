@@ -5,6 +5,8 @@ import Footer from "../componants/footer/Footer";
 import prod from '../public/prods.jpg'
 import axios from "axios";
 import ClientComp from "./clientComps.jsx";
+import { Suspense } from "react";
+import Loader from "@/componants/loader/Loader";
 
 export default async function Home() {
 
@@ -16,19 +18,20 @@ export default async function Home() {
       console.log(error)
     }
   }
-  
   var data = await getData()
   data = JSON.stringify(data)
   console.log(data)
-
+  
+  
   
 
   
 
   return (
     <> 
-    <ClientComp data={data}/>
-    <Footer/>
+    <Suspense fallback={<Loader/>}>
+      <ClientComp data={data}/>
+    </Suspense>
     </>
   );
 }

@@ -1,5 +1,5 @@
 .cart{
-    /* height: 100vh; */
+    height: 100vh;
     display: flex;
     
 }
@@ -92,4 +92,12 @@
     color: white;
     padding: 10px 0px;
     font-size: medium;
+}
+
+.empty{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
 }

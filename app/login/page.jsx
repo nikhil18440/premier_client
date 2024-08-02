@@ -11,6 +11,7 @@ import Link from 'next/link';
 import { userFetchFailure, userFetchStart, userFetchSuccess } from '../../redux/userReducer';
 import Navbar from '../../componants/navbar/Navbar';
 import Footer from '../../componants/footer/Footer';
+import { setCart } from '@/redux/cartReducer';
 
 function LoginPage() {
 
@@ -37,6 +38,46 @@ function LoginPage() {
         dispatch(userFetchSuccess(res.data))
         sessionStorage.setItem('user', JSON.stringify(res.data))
         sessionStorage.setItem('token', JSON.stringify(res.data.accessToken))       
+        // find or set cart
+
+
+        var cart = null
+        if(res.data){
+          const user = res.data
+          
+            try {
+
+              const resCart = await axios.get(`${process.env.API_ENDPOINT}/cart/find/${user._id}`,{
+                headers: {
+                token:  `Bearer ${user.accessToken}`
+                }
+              })
+              dispatch(setCart(resCart.data))
+              console.log('found an existing cart:', resCart.data)
+              sessionStorage.setItem('cartId', JSON.stringify(resCart.data))
+              
+              
+
+            } catch (error) {
+              try {
+                const newCart = await axios.post(`${process.env.API_ENDPOINT}/cart/${user._id}`, {
+                  userId: user._id,
+                  products: [],
+                  total: 0
+                }, {headers: {token:`Bearer ${user.accessToken}`}})
+                
+                console.log('ress:',newCart.data)
+                sessionStorage.setItem('cartId', JSON.stringify(newCart.data))
+                dispatch(setCart(newCart.data))
+              } catch (error) {
+                console.log(error)
+              }
+              console.log(error)
+            }
+          
+        }
+  
+
 
 
         router.push('/')
@@ -65,7 +106,6 @@ function LoginPage() {
 
   return (
     <>
-    <Navbar/>
     <div className="loginPageContainer">
       <div className="formContainer">
         <h2 className="loginTitle">Login</h2>
@@ -86,7 +126,6 @@ function LoginPage() {
         <Image src={model} alt="Login Image" className="loginImage" />
       </div>
     </div>
-    <Footer/>
     </>
   );
 }

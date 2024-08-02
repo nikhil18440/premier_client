@@ -4,16 +4,28 @@ import Link from 'next/link';
 import styles from './navbar.module.css';
 import {CiUser,CiShoppingCart} from 'react-icons/ci'
 import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 const Navbar = () => {
 
   const userStore = useSelector(state => state.user)
   const cartStore = useSelector(state => state.cart)
 
+  var prods = 0
+  var cartSess = JSON.parse(sessionStorage.getItem('cartId'))
+  if(cartSess){
+    prods = cartSess.products.length
+  }
+  useEffect(() => {
+    if(cartSess){
+      prods = cartSess.products.length
+    }
+  }, [cartStore.cart])
+  
   var cartNum = null
 
   if(cartStore.cart){
-    cartNum = cartStore.cart.products.length
+    cartNum = cartStore.quantity
   }
 
   return (
@@ -67,7 +79,7 @@ const Navbar = () => {
             <Link href="/cart" className={styles.iconLink}>
               <CiShoppingCart className="fas fa-shopping-cart" size={30}/>
             </Link>
-            <span className={styles.cartItemNum} style={cartNum===null || cartNum===0 ? {display:'none'}: {display:'block'}}>{cartNum}</span>
+            <span className={styles.cartItemNum} style={cartNum===null || cartNum===0 ? {display:'none'}: {display:'block'}}>{prods}</span>
           </li>
           <li className={styles.iconItem}>
             <Link href="/profile" className={styles.iconLink}>

@@ -1,0 +1,14 @@
+.mainContainer{
+    padding: 4rem 19rem;
+    line-height: 35px;
+}
+
+.mainContainer > p{
+    margin-top: 1rem;
+}
+.mainContainer > h2{
+    margin-top: 2.5rem;
+}
+.mainContainer > h3{
+    margin-top: 2rem;
+}

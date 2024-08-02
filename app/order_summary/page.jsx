@@ -77,7 +77,6 @@ export default function OrderPage() {
 
   return (
     <>
-    <Navbar/>
     <div className={styles.container}>
       <h1 className={styles.header}>Order History</h1>
       <div className={styles.pendingOrdersSection}>
@@ -135,6 +134,5 @@ export default function OrderPage() {
         </ul>
       </div>
     </div>
-    <Footer/>
     </>
   )}

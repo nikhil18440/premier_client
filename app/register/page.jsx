@@ -45,7 +45,6 @@ const RegisterPage = () => {
 
   return (
     <>
-    <Navbar/>
     <div className='registerPageContainer'>
       <div className='leftSideContainer'>
         <h1 className='registerHeading'>Register</h1>
@@ -70,7 +69,6 @@ const RegisterPage = () => {
         <img className='registerImage' src="/register-image.jpg" alt="Register Image" />
       </div>
     </div>
-    <Footer/>
     </>
   );
 };

@@ -9,7 +9,6 @@ import { names } from '../general_names'
 export default function page(props) {
   return (
     <>
-    <Navbar/>
       <Image src={tshirt} height={200} className={styles.aboutusImg}/>
       <div className={styles.aboutus}>
       <div className={styles.aboutusDiv}>
@@ -35,7 +34,6 @@ export default function page(props) {
       <p style={{ fontWeight:700, fontSize:'18px', color:'darkgrey'}}>Thank you for choosing {names.comp_name}. We are excited to be a part of your fashion journey and look forward to helping you express your unique style with confidence and grace.</p>
       </div>
       </div>
-    <Footer/>
     </>
   )
 }

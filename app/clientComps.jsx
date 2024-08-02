@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { setCart } from '../redux/cartReducer';
 import Navbar from '../componants/navbar/Navbar';
+import Findcart from './scripts';
 
 export default function ClientComp(props) {
 
@@ -20,6 +21,13 @@ export default function ClientComp(props) {
       data = JSON.parse(props.data)
     }else{
       data = null
+    }
+
+    var cart = null
+    if(props.cart){
+      cart = JSON.parse(props.cart)
+    }else{
+      cart = null
     }
 
     const router = useRouter()
@@ -35,50 +43,21 @@ export default function ClientComp(props) {
 
     
 
-  const findcart = async () => {
-    if(cartStore.cart === null){
-     
-        const res = await axios.get(`${process.env.API_ENDPOINT}/cart/find/${userStore.user._id}`,{
-          headers: {
-            token: token
-          }
-        })
-        if(res.data === null && userStore.user){
-          
-          const newCart = await axios.post(`${process.env.API_ENDPOINT}/cart/${userStore.user._id}`, {
-              userId: userStore.user._id,
-              products: [],
-              total: 0
-          }, {headers: {token:token}})
-          
-          dispatch(setCart(newCart.data))
-          sessionStorage.setItem('cartId', JSON.stringify(newCart.data))
-        }else{
-          if(res.data){
-            sessionStorage.setItem('cartId', JSON.stringify(res.data))
-            dispatch(setCart(res.data))
+// let cart = sessionStorage.setItem('cartId', JSON.stringify(Findcart(userStore,cartStore,token)))
 
-            // res.data.products.map(item => {
-            //   removefromDbCart({Cart: res.data, product: item})
-            // })
-          }
-          
-        }
-    }else{
-      console.log("the else loop is executing");
-      const localUser = JSON.parse(sessionStorage.getItem('cartId'))
-      if(localUser){
-        dispatch(setCart(localUser))
-      }
-    }
-}
+// if(cart===false){
+//   const localUser = JSON.parse(sessionStorage.getItem('cartId'))
+//   if(localUser){
+//     dispatch(setCart(localUser))
+//   }
+// }
 
-useEffect(() => {
-  if(userStore.user){
-    token  = `Bearer ${JSON.parse(window.sessionStorage.getItem('token'))}`
-    findcart()
-  }
-}, [userStore.user])
+// useEffect(() => {
+//   if(userStore.user){
+//     token  = `Bearer ${JSON.parse(window.sessionStorage.getItem('token'))}`
+//     sessionStorage.setItem('cartId',JSON.stringify(Findcart(userStore,cartStore,token)))
+//   }
+// }, [userStore.user])
 
 // const updateCart = useCallback(() => {
 //   const localUser = JSON.parse(sessionStorage.getItem('cartId'))
@@ -95,7 +74,6 @@ useEffect(() => {
 
   return (
     <>
-    <Navbar/>
     {
         data ? data.map((item,i) => (
           <div className={styles.prodDiv} key={i}>

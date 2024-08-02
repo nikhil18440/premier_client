@@ -5,6 +5,10 @@ import Navbar from '../../componants/navbar/Navbar';
 import Footer from '../../componants/footer/Footer';
 import emailjs from '@emailjs/browser';
 import toast from 'react-hot-toast'; // Import ToastContainer
+import { names } from '../general_names';
+import { CiFacebook, CiInstagram, CiTwitter } from 'react-icons/ci';
+import { FaXTwitter } from 'react-icons/fa6';
+import { FaFacebook, FaInstagram } from 'react-icons/fa';
 
 export default function Contact() {
   const [name, setname] = useState("");
@@ -50,10 +54,50 @@ export default function Contact() {
   return (
     // <Toaster> {/* Wrap your app with ToastContainer */}
     <>
-      <Navbar />
-      <div className={styles.container}>
+
+        <div className={styles.mainWrapper}>
+        <div className={styles.left}>
+          <div className={styles.top}>
+          <h2>Get in touch with us</h2>
+          <ul className={styles.details}>
+            <li>
+              <h4>email: </h4>
+              <p>{names.email}</p>
+            </li>
+            <li>
+              <h4>contact Numbers: </h4>
+              {
+                names.pNumber.map((num, index) => (
+                  <p>{num}, </p>
+                ))
+              }
+            </li>
+            
+          </ul>
+          </div>
+
+          <div className={styles.bottom}>
+            <h2>Join our community</h2>
+            <ul className={styles.smedia}>
+              {/* <li> */}
+                <a href={names.fbLink} target='blank'><FaFacebook size={30}/></a>
+              {/* </li> */}
+              {/* <li> */}
+                <a href={names.instagramLink} target='blank'><FaInstagram size={30}/></a>
+              {/* </li> */}
+              {/* <li> */}
+                <a href={names.twitter} target='blank'><FaXTwitter size={30}/></a>
+              {/* </li> */}
+              
+            </ul>
+          </div>
+
+        </div>
+
+        <div className={styles.right}>
+        <div className={styles.container}>
         <div className={styles.headingContainer}>
-          <h2 className={styles.heading}>Get in Touch</h2>
+          <h2 className={styles.heading}>Mail us your queries</h2>
           <p className={styles.subheading}>Email us with any questions or comments</p>
         </div>
         <div className={styles.formContainer}>
@@ -79,8 +123,10 @@ export default function Contact() {
         {
           error && <Toaster richColors/>
         } */}
-      </div>
-      <Footer />
+        </div>
+        </div>
+        </div>
+
       </>
     // </Toaster>
   );

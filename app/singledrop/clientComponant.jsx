@@ -81,33 +81,87 @@ export default function ClientComp(props) {
 
   const [addedProd, setaddedProd] = useState(null)
 
-  useEffect(() => {
-    if(addedProd){
-      dispatch(addProduct(prod))
-      console.log("datatttt:", addedProd.data)   
-      dispatch(setCart(addedProd.data))
-      sessionStorage.setItem('cartId',JSON.stringify(addedProd.data))
-      console.log("carttt1:",cartStore.cart)
-      console.log("carttt2:",cartStore.cart)
-    }
-  }, [addedProd])
+  // useEffect(() => {
+  //   if(addedProd){
+  //     // dispatch(addProduct(prod))
+  //     // console.log("datatttt:", addedProd.data)   
+  //     // dispatch(setCart(addedProd.data))
+  //     // sessionStorage.setItem('cartId',JSON.stringify(addedProd.data))
+  //     // console.log("carttt1:",cartStore.cart)
+  //     // console.log("carttt2:",cartStore.cart)
+  //   }
+  // }, [addedProd])
+
+  // const dispatch = useDispatch()
+
+    const [foundCart,setfoundCart] = useState(false)
+    
+
+    // useEffect(() => {
+        
+    //           setfoundCart(true)
+    //     }
+
+    //     if (!foundCart) {
+    //       fetchCart()
+    //     }
+
+    // }, [cartStore.cart])
+
+    async function fetchCart() {
+      if(userStore.user){
+          const user = userStore.user
+          
+            try {
+
+              const resCart = await axios.get(`${process.env.API_ENDPOINT}/cart/find/${user._id}`,{
+                headers: {
+                token:  `Bearer ${user.accessToken}`
+                }
+              })
+              
+              console.log('found an existing cart:', resCart.data)
+              
+              if(resCart.data===null){
+                const newCart = await axios.post(`${process.env.API_ENDPOINT}/cart/${user._id}`, {
+                  userId: user._id,
+                  products: [],
+                  total: 0
+                }, {headers: {token:`Bearer ${user.accessToken}`}})
+                
+                sessionStorage.setItem('cartId', JSON.stringify(newCart.data))
+                dispatch(setCart(newCart.data))
+              }else{
+                sessionStorage.setItem('cartId', JSON.stringify(resCart.data))
+                dispatch(setCart(resCart.data))
+              }
+
+            } catch (error) {
+              console.log(error)
+            }
+          
+        }
+      }
   
 
 
   async function handleSubmit() {
 
     const saveCart = await handleSubmitFunc(userStore,cartStore,Size,qty,data,token)
+    
+      let prod = {
+        productId: data._id,
+        size: Size,
+        quantity: qty
+      }
+      if(saveCart){
+        dispatch(addProduct(prod))
+        dispatch(setCartTotal(parseInt(data.price)*parseInt(qty)))
+        fetchCart()
+        console.log("lessgoooo:",saveCart)
+      }
+    
     // dispatch(setCartTotal(parseInt(data.price * qty)))
-    let prod = {
-      productId: data._id,
-      size: Size,
-      quantity: qty
-    }
-    dispatch(addProduct(prod))
-    dispatch(setCart(saveCart))
-    dispatch(setCartTotal(saveCart.total))
-    // setaddedProd(res)
-    console.log(saveCart)
 
     // if(userStore.user){
     //   try {

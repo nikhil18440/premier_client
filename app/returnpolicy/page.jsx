@@ -2,18 +2,18 @@ import React from 'react'
 import Navbar from '../../componants/navbar/Navbar'
 import Footer from '../../componants/footer/Footer'
 import styles from './returnpol.module.css'
+import { names } from '../general_names'
 
 export default function page() {
   return (
     <>
-    <Navbar/>
     <div class={styles.container}>
-  <h3>{process.env.COMP}Louvy Return and Refund Policy</h3>
-  <p>Welcome to Louvy! We strive to ensure our customers have a great shopping experience with us. We understand that a comprehensive return and refund policy is an important aspect of this experience.</p>
+  <h3>{process.env.COMP}{names.comp_name} Return and Refund Policy</h3>
+  <p>Welcome to {names.comp_name}! We strive to ensure our customers have a great shopping experience with us. We understand that a comprehensive return and refund policy is an important aspect of this experience.</p>
 
   <h4>Current Policy</h4>
   <p>No Returns or Refunds</p>
-  <p>As of now, Louvy does not accept returns or provide refunds for any products purchased. All sales are considered final. We encourage our customers to carefully review product descriptions, specifications, and sizing charts before making a purchase to ensure satisfaction with the chosen items.</p>
+  <p>As of now, {names.comp_name} does not accept returns or provide refunds for any products purchased. All sales are considered final. We encourage our customers to carefully review product descriptions, specifications, and sizing charts before making a purchase to ensure satisfaction with the chosen items.</p>
 
   <h4>Forthcoming Policy (Available Soon)</h4>
   <p>We are excited to announce that we are developing a return and refund policy that will soon be available to our valued customers. Below is an outline of the key components of the policy we are planning to implement:</p>
@@ -32,8 +32,6 @@ export default function page() {
       <h5>Non-Returnable Items</h5>
       <p>Certain items may not be eligible for return, including but not limited to:</p>
       <ul>
-        <li>Perishable goods (e.g., food, flowers)</li>
-        <li>Personal care items (e.g., toiletries, cosmetics)</li>
         <li>Custom-made or personalized products</li>
         <li>Clearance or sale items</li>
       </ul>
@@ -42,7 +40,7 @@ export default function page() {
       <h5>Return Process</h5>
       <p>To initiate a return once the policy is in place, customers will need to follow these steps:</p>
       <ol>
-        <li>Contact Customer Service: Reach out to our customer service team at [contact email] or [contact phone number] to request a return authorization.</li>
+        <li>Contact Customer Service: Reach out to our customer service team at {names.email} or {names.pNumber.map((i) => (<span>{i},</span>))} to request a return authorization.</li>
         <li>Return Authorization: Upon approval, a return authorization number and instructions for returning the item will be provided.</li>
         <li>Packaging: Pack the item securely in its original packaging, including all accessories, manuals, and documentation.</li>
         <li>Shipping: Ship the item to the address provided using a trackable shipping method.</li>
@@ -69,15 +67,14 @@ export default function page() {
 
   <h4>Contact Us</h4>
   <p>We value our customers and are committed to providing a positive shopping experience. If you have any questions or concerns about our current or forthcoming return policy, please do not hesitate to contact us.</p>
-  <p>Email: [contact email]</p>
-  <p>Phone: [contact phone number]</p>
+  <p>Email: {names.email}</p>
+  <p>Phone: {names.pNumber.map((i) => (<span>{i},</span>))}</p>
 
-  <p>Thank you for choosing Louvy. We appreciate your business and look forward to serving you better with our upcoming return and refund policy.</p>
+  <p>Thank you for choosing {names.comp_name}. We appreciate your business and look forward to serving you better with our upcoming return and refund policy.</p>
 
   <p>Sincerely,</p>
-  <p>The Louvy Team</p>
+  <p>The {names.comp_name} Team</p>
 </div>
-<Footer/>
 </>
   )
 }

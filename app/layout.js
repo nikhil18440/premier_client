@@ -5,6 +5,11 @@ import {Montserrat} from 'next/font/google'
 import { ReduxProvider } from "../redux/reduxProvider";
 import Providers from "./provider";
 import { Toaster } from "react-hot-toast";
+import { Suspense } from "react";
+import Loader from "@/componants/loader/Loader";
+import Navbar from "@/componants/navbar/Navbar";
+import Footer from "@/componants/footer/Footer";
+
 
 const inter = Inter({ subsets: ["latin"] });
 const montserrat = Montserrat({
@@ -22,8 +27,12 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={montserrat.className}>
         <ReduxProvider>
-          <Toaster position="bottom-center"/>
-          {children}
+            <Toaster position="bottom-center"/>
+            <Suspense fallback={<Loader/>}>
+              <Navbar/>
+              {children}
+              <Footer/>
+            </Suspense>
         </ReduxProvider>
       </body>
     </html>

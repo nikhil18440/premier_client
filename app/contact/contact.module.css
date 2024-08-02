@@ -1,6 +1,18 @@
+.mainWrapper{
+  display: flex;
+  flex-direction: row;
+}
+
+.left{
+  flex: 1;
+}
+.right{
+  flex: 1;
+}
+
 .container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     padding: 5rem 2rem
@@ -23,7 +35,9 @@
   }
   
   .formContainer {
-    flex-basis: 60%;
+    /* flex-basis: 60%; */
+    width: 90%;
+    /* background-color: aqua; */
   }
   
   .label {
@@ -54,3 +68,54 @@
   .button:hover {
     background-color: #444;
   }
+
+
+  .left{
+    display: flex;
+    /* align-items: center; */
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 7rem;
+  }
+
+  .details > li{
+    display: flex;
+    margin-top: 1.5rem;
+  }
+  
+
+  .details > li > h4{
+    margin-right: 10px;
+  }
+  
+
+  .smedia{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .bottom{
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    float: left;
+  }
+
+  .smedia{
+    margin-top: 1rem;
+  }
+  .smedia > a{
+    margin-right: 1rem;
+    cursor: pointer;
+  }
+
+  @media only screen and (max-width: 700px){
+    .right{
+      display: none;
+    }
+  
+    .middle{
+      display: none;
+    }
+  }
+

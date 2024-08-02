@@ -26,15 +26,15 @@ export default async function ServerComp(props) {
       dataStr = null
     }
 
+    
+
 
     
 
   return (
     
     <>
-    <Navbar/>
     <ClientComp data={dataStr}/>
-    <Footer/>
     </>
 
   )

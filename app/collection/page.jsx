@@ -50,7 +50,7 @@ export default async function page() {
 
   return (
     <>
-    <Navbar/>
+
     <div className={styles.container}>
        
           {
@@ -73,8 +73,6 @@ export default async function page() {
 
         {/* </div> */}
     </div>
-
-    <Footer/>
     </>
   )
 
