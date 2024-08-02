@@ -110,8 +110,10 @@ export default function ClientComp({prodArr}) {
                 // dispatch(delProduct(item[3]))
                 console.log('mycart:',cartStore)
                 // dispatch(setCartTotalMinus(prodPrice))
-                sessionStorage.setItem('cartId',JSON.stringify(res.data))
-            }
+                if(typeof window !== 'undefined'){
+                    sessionStorage.setItem('cartId',JSON.stringify(res.data))
+                }
+                }
         } catch (error) {
             console.log(error)
         }

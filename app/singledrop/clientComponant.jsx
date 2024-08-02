@@ -129,10 +129,14 @@ export default function ClientComp(props) {
                   total: 0
                 }, {headers: {token:`Bearer ${user.accessToken}`}})
                 
-                sessionStorage.setItem('cartId', JSON.stringify(newCart.data))
+                if(typeof window !== 'undefined'){
+                  sessionStorage.setItem('cartId', JSON.stringify(newCart.data))
+                }
                 dispatch(setCart(newCart.data))
               }else{
-                sessionStorage.setItem('cartId', JSON.stringify(resCart.data))
+                if(typeof window !== 'undefined'){
+                  sessionStorage.setItem('cartId', JSON.stringify(resCart.data))
+                }
                 dispatch(setCart(resCart.data))
               }
 

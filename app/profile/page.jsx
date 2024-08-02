@@ -58,8 +58,10 @@ const ProfilePage = () => {
       })
       if(res.data){
         dispatch(userFetchSuccess(res.data))
-        sessionStorage.setItem('user', JSON.stringify(profile))
-      }
+        if(typeof window !== 'undefined'){
+          sessionStorage.setItem('user', JSON.stringify(profile))
+        }
+        }
     } catch (error) {
       dispatch(userFetchFailure())
     }

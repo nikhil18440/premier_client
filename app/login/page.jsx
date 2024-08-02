@@ -36,8 +36,10 @@ function LoginPage() {
       if(res){
         setuser(res.data)
         dispatch(userFetchSuccess(res.data))
-        sessionStorage.setItem('user', JSON.stringify(res.data))
-        sessionStorage.setItem('token', JSON.stringify(res.data.accessToken))       
+        if(typeof window !== 'undefined'){
+          sessionStorage.setItem('user', JSON.stringify(res.data))
+          sessionStorage.setItem('token', JSON.stringify(res.data.accessToken))       
+        }
         // find or set cart
 
 
@@ -54,8 +56,9 @@ function LoginPage() {
               })
               dispatch(setCart(resCart.data))
               console.log('found an existing cart:', resCart.data)
-              sessionStorage.setItem('cartId', JSON.stringify(resCart.data))
-              
+              if(typeof window !== 'undefined'){
+                sessionStorage.setItem('cartId', JSON.stringify(resCart.data))
+              }
               
 
             } catch (error) {
@@ -67,7 +70,9 @@ function LoginPage() {
                 }, {headers: {token:`Bearer ${user.accessToken}`}})
                 
                 console.log('ress:',newCart.data)
-                sessionStorage.setItem('cartId', JSON.stringify(newCart.data))
+                if(typeof window !== 'undefined'){
+                  sessionStorage.setItem('cartId', JSON.stringify(newCart.data))
+                }
                 dispatch(setCart(newCart.data))
               } catch (error) {
                 console.log(error)

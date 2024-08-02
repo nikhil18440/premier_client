@@ -12,7 +12,11 @@ const Navbar = () => {
   const cartStore = useSelector(state => state.cart)
 
   var prods = 0
-  var cartSess = JSON.parse(sessionStorage.getItem('cartId'))
+  var cartSess = null
+  if(typeof window !== 'undefined'){
+    JSON.parse(sessionStorage.getItem('cartId'))
+  }
+  
   if(cartSess){
     prods = cartSess.products.length
   }
