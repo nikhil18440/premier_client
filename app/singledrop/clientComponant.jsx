@@ -247,7 +247,7 @@ export default function ClientComp(props) {
             <button className={styles.cartBtn} onClick={handleSubmit}>ADD TO SHOPPING BAG</button>
            
           </div>
-          </> : <></>
+          </> : <p>404:couldn't find any products</p>
           }
 
           

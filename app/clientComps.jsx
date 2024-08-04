@@ -9,6 +9,7 @@ import axios from 'axios';
 import { setCart } from '../redux/cartReducer';
 import Navbar from '../componants/navbar/Navbar';
 import Findcart from './scripts';
+import Broken from '@/componants/broken/broken';
 
 export default function ClientComp(props) {
 
@@ -83,7 +84,7 @@ export default function ClientComp(props) {
               <button className={styles.shopbtn} onClick={() => handleClick(item._id)}>Shop now</button>
             </div>
           </div>
-        )) : <></>
+        )) : <Broken/>
       }
     </>
   )

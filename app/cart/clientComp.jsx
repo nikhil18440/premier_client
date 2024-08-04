@@ -11,6 +11,7 @@ import { redirect } from 'next/navigation'
 import { delProduct, setCart, setCartTotal, setCartTotalMinus } from '@/redux/cartReducer'
 import axios from 'axios'
 import Loader from '@/componants/loader/Loader'
+import Broken from '@/componants/broken/broken'
 
 export default function ClientComp({prodArr}) {
 
@@ -169,7 +170,8 @@ export default function ClientComp({prodArr}) {
             </div>
             </> : (
                 error ? 
-                <div className={styles.empty}>404: Something went wrong</div>
+                // <div className={styles.empty}>404: Something went wrong</div>
+                <Broken/>
                 :
                 <div className={styles.empty}>Your shopping bag is empty</div>
             )

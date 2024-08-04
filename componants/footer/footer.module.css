@@ -56,3 +56,12 @@
 .sec3 > ul > li:hover, .sec2 > ul > li :hover{
     color: gray;
 }
+
+
+@media only screen and (max-width: 700px){
+    .footerTop{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+}

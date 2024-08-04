@@ -5,6 +5,7 @@ import Navbar from '../../componants/navbar/Navbar';
 import Footer from '../../componants/footer/Footer';
 import {FaStar, FaRegStar} from 'react-icons/fa'
 import submitFunc from './submit';
+import Broken from '@/componants/broken/broken';
 
 export default function ClientComp(props) {
 
@@ -71,7 +72,7 @@ export default function ClientComp(props) {
                     </div>
                     </>
                 )) : (
-                    <></>
+                    <p>No reviews yet. Post your review</p>
                 )
             }
             
@@ -80,10 +81,12 @@ export default function ClientComp(props) {
       </div>
       
       <div className={styles.formContainer}>
-        <form onSubmit={submitForm}>
+        <form onSubmit={submitForm} className={styles.submitForm}>
+          <h2>Share your experience</h2>
           <label className={styles.label} htmlFor="email">Email:</label>
           <input className={styles.input} type="email" id="email" name="email" onChange={(e) => setEmail(e.target.value)}/>
           <br />
+          
           <label className={styles.label} htmlFor="name">Name:</label>
           <div className={styles.starReview}>
           {[...Array(5)].map((star, index) => {

@@ -83,7 +83,7 @@ const Navbar = () => {
             <Link href="/cart" className={styles.iconLink}>
               <CiShoppingCart className="fas fa-shopping-cart" size={30}/>
             </Link>
-            <span className={styles.cartItemNum} style={cartNum===null || cartNum===0 ? {display:'none'}: {display:'block'}}>{prods}</span>
+            <span className={styles.cartItemNum} style={cartNum===null || cartNum===0 ? {display:'none'}: {display:'block'}}>{cartStore.cart ? cartStore.cart.products.length : 0}</span>
           </li>
           <li className={styles.iconItem}>
             <Link href="/profile" className={styles.iconLink}>

@@ -4,6 +4,7 @@ import prod from '../../public/prods.jpg'
 import Image from 'next/image';
 import Navbar from '../../componants/navbar/Navbar';
 import Footer from '../../componants/footer/Footer';
+import Broken from '@/componants/broken/broken';
 
 export default function OrderPage() {
   const orders = [
@@ -77,7 +78,8 @@ export default function OrderPage() {
 
   return (
     <>
-    <div className={styles.container}>
+    {
+      orders ? <div className={styles.container}>
       <h1 className={styles.header}>Order History</h1>
       <div className={styles.pendingOrdersSection}>
         <h2 className={styles.sectionHeader}>PENDING ORDERS</h2>
@@ -133,6 +135,7 @@ export default function OrderPage() {
           ))}
         </ul>
       </div>
-    </div>
+    </div> : <Broken/>
+    }
     </>
   )}

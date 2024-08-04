@@ -72,15 +72,18 @@
 
   .left{
     display: flex;
-    /* align-items: center; */
+    align-items: center;
     flex-direction: column;
     justify-content: center;
-    padding-left: 7rem;
+    padding: 10%;
+    /* padding: 5rem; */
+    /* padding-left: 7rem; */
   }
 
   .details > li{
     display: flex;
     margin-top: 1.5rem;
+    flex-wrap: wrap;
   }
   
 
@@ -94,28 +97,75 @@
     flex-direction: row;
   }
 
+  .top{
+    width: 100%;
+  }
+
   .bottom{
     margin-top: 4rem;
     display: flex;
     flex-direction: column;
-    float: left;
+    width: 100%;
+    /* align-items: flex-start; */
+    /* background-color: red; */
+    /* float: left; */
   }
 
   .smedia{
     margin-top: 1rem;
+    
   }
   .smedia > a{
     margin-right: 1rem;
     cursor: pointer;
   }
 
+  .headingContainer{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+  }
+
   @media only screen and (max-width: 700px){
-    .right{
-      display: none;
+    .mainWrapper{
+      flex-direction: column;
     }
-  
-    .middle{
-      display: none;
+
+    .left{
+      /* padding: 10% 0px 0px 20%; */
     }
+
+    .container, .right,.headingContainer{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .smedia{
+      display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: aquamarine; */
+    }
+
+    .bottom > h2{
+      text-align: center;
+    }
+
+    .top>h2{
+      text-align: center;
+    }
+
+    .details{
+      /* padding-left: 2rem; */
+    }
+
+    .details > li{
+      line-height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
   }
 

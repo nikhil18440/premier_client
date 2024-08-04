@@ -11,6 +11,7 @@ import Link from 'next/link'
 import Footer from '../../componants/footer/Footer'
 import axios from 'axios'
 import pageReq from './pageReq'
+import Broken from '@/componants/broken/broken'
 // import { useSearchParams } from 'next/navigation'
 // import { useRouter } from 'next/navigation'
 
@@ -68,7 +69,7 @@ export default async function page() {
                 <h4 className={styles.prodTitle}>{item.title}</h4>
                 <h4 className={styles.prodPrice}>{item.price}</h4>
               </div>
-            )) : <></>
+            )) : <Broken/>
           }
 
         {/* </div> */}

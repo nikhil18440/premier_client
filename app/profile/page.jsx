@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { redirect } from 'next/navigation';
 import { userFetchFailure, userFetchStart, userFetchSuccess } from '../../redux/userReducer';
 import axios from 'axios';
+import Broken from '@/componants/broken/broken';
 
 const ProfilePage = () => {
 
@@ -81,7 +82,9 @@ const ProfilePage = () => {
 
   return (
     <>
-    <div className={styles.container}>
+    {
+      profile ? 
+      <div className={styles.container}>
       <h1>Profile Page</h1>
       <div className={styles.profileInfo}>
         <label>First Name:</label>
@@ -179,7 +182,8 @@ const ProfilePage = () => {
         userStore.user !== null ? <button className={styles.logout} onClick={handleLogout}>Logout</button> : <></>
       }
       </div>
-    </div>
+    </div> : <Broken/>
+    }
     </>
   );
 };
