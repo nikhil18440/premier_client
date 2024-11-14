@@ -7,6 +7,8 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import Navbar from '../../componants/navbar/Navbar';
 import Footer from '../../componants/footer/Footer';
+import kndl from '../../public/kndl.jpg'
+import Image from 'next/image';
 
 const RegisterPage = () => {
 
@@ -49,10 +51,16 @@ const RegisterPage = () => {
       <div className='leftSideContainer'>
         <h1 className='registerHeading'>Register</h1>
         <form action={handleSubmit}>
-          <label className='firstNameLabel' htmlFor="firstName">First Name</label>
-          <input className='inputField' type="text" id="firstName" name="firstName" onChange={(e) => setFirstName(e.target.value)}/>
-          <label className='lastNameLabel' htmlFor="lastName">Last Name</label>
-          <input className='inputField' type="text" id="lastName" name="lastName"  onChange={(e) => setLastName(e.target.value)}/>
+          {/* <div className='names'>
+            <span> */}
+            <label className='firstNameLabel' htmlFor="firstName">First Name</label>
+            <input className='inputField' type="text" id="firstName" name="firstName" onChange={(e) => setFirstName(e.target.value)}/>
+            {/* </span>
+            <span> */}
+            <label className='lastNameLabel' htmlFor="lastName">Last Name</label>
+            <input className='inputField' type="text" id="lastName" name="lastName"  onChange={(e) => setLastName(e.target.value)}/>
+            {/* </span>
+          </div> */}
           <label className='emailLabel' htmlFor="email">Email</label>
           <input className='inputField' type="email" id="email" name="email"  onChange={(e) => setEmail(e.target.value)}/>
           <label className='passwordLabel' htmlFor="password">Password</label>
@@ -65,9 +73,9 @@ const RegisterPage = () => {
         </form>
         <p className='alreadyHaveAccountText'>Already have an account? <Link href='/login'>Login</Link></p>
       </div>
-      <div className='rightSideContainer'>
-        <img className='registerImage' src="/register-image.jpg" alt="Register Image" />
-      </div>
+      {/* <div className='rightSideContainer'>
+        <Image className='registerImage' src={kndl} alt="Register Image" />
+      </div> */}
     </div>
     </>
   );

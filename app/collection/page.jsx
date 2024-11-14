@@ -67,7 +67,7 @@ export default async function page() {
                   {/* <div c></div> */}
                 </Link>
                 <h4 className={styles.prodTitle}>{item.title}</h4>
-                <h4 className={styles.prodPrice}>{item.price}</h4>
+                <h4 className={styles.prodPrice}>&#8377; {item.price}</h4>
               </div>
             )) : <Broken/>
           }

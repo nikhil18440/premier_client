@@ -4,17 +4,20 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    background-color: #fff;
+    background-color: #000000;
     border-bottom: 1px solid #ddd;
     height: 65px;
+    color: rgb(211, 211, 211);
   }
   
   .left {
     flex-basis: 20%;
+    position: relative;
   }
   
   .logo {
     margin-right: 1rem;
+    font-size: larger;
   }
   
   .logo img {
@@ -31,15 +34,17 @@
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
   }
   
   .navItem {
     margin-right: 20px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
   }
   
   .navLink {
-    color: #333;
+    /* color: #333; */
     text-decoration: none;
     transition: color 0.2s ease;
   }
@@ -102,6 +107,12 @@
     font-size: xx-small;
   }
 
+  .rightBtns{
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+  }
+
   .loginBtn, .registerBtn{
     /* font-size: 18px; */
     /* color: rgb(61, 61, 61); */
@@ -115,6 +126,9 @@
   }
 
   .loginBtn, .registerBtn {
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
     font-size: 15px;
     color: #c1c1c1;
     font-family: inherit;
@@ -132,13 +146,13 @@
   
 
   .loginBtn:focus, .registerBtn:focus {
-  color: black;
+  color: rgb(97, 97, 97);
 }
 .loginBtn:hover, .registerBtn:hover {
-  color: black;
+  color: rgb(97, 97, 97);
 }
 
-.loginBtn:focus:after {
+/* .loginBtn:focus:after {
   width: 100%;
   left: 0%;
 }
@@ -159,14 +173,45 @@
   transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
   transition-duration: 400ms;
   transition-property: width, left;
+} */
+
+.smallbar{
+  display: none;
 }
 
-@media only screen and (max-width: 700px){
-  /* .right{
+
+
+@media only screen and (max-width: 800px){
+  .middle{
+    display: none;
+  }
+  .right{
     display: none;
   }
 
-  .middle{
-    display: none;
+  .middleSm{
+    display: block;
+  }
+
+  .smallbar{
+    display: block;
+    
+  }
+
+  .navbar{
+    padding: 0px;
+  }
+ 
+  .left{
+    padding-left: 20px;
+  }
+  
+  /* .navbar{
+    width: 100%;
+    background-color: red;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   } */
+  
 }

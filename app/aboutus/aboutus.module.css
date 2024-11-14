@@ -14,7 +14,7 @@
 .aboutusDiv{
     width: 50%;
     display: flex;
-    /* align-items: center; */
+    align-items: center;
     justify-content: center;
     flex-direction: column;
 }
@@ -28,4 +28,12 @@
 .aboutusDiv > p{
     margin-bottom: 4rem;
     line-height: 35px;
+    text-align: center;
+}
+
+@media only screen and (max-width: 700px){
+    .aboutusDiv{
+        width: 60%;
+    }
+
 }

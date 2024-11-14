@@ -5,14 +5,14 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 120vh;
     margin: 0;
     padding: 0;
     background-color: #f7f7f7;
   }
   
   .leftSideContainer {
-    width: 40%;
+    width: 50%;
     padding: 40px;
     /* background-color: #fff; */
     /* border-radius: 10px;
@@ -24,6 +24,7 @@
     font-weight: bold;
     margin-bottom: 20px;
     color: #333;
+    text-align: center;
   }
   
   form {
@@ -41,7 +42,7 @@
   .inputField {
     width: 100%;
     height: 40px;
-    padding: 10px;
+    padding: 5px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -129,5 +130,32 @@
     }
     100% {
       opacity: 1;
+    }
+
+  }
+
+  .names{
+    display: flex;
+    /* padding: 0px 10px; */
+    justify-content: space-between;
+  }
+
+
+  @media only screen and (max-width: 1000px){
+    
+    .rightSideContainer{
+      position: relative;
+      width: 100%;
+      height: 100%;
+      padding: 0px;
+      margin: 0px;
+      object-fit: cover;
+    }
+
+    .leftSideContainer {
+      position: absolute;
+      z-index: 999;
+      background-color: whitesmoke;
+      width: 70%;
     }
   }

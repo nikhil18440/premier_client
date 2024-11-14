@@ -115,11 +115,11 @@ function LoginPage() {
       <div className="formContainer">
         <h2 className="loginTitle">Login</h2>
         <form action={handleSubmit}>
-          <label className="label" htmlFor="username">Username:</label>
-          <input type="text" id="username" className="inputField" onChange={(e) => setEmail(e.target.value)}/>
+          {/* <label className="label" htmlFor="username">Username:</label> */}
+          <input type="text" id="username" className="inputField" onChange={(e) => setEmail(e.target.value)} placeholder='email'/>
           <br />
-          <label className="label" htmlFor="password">Password:</label>
-          <input type="password" id="password" className="inputField"  onChange={(e) => setPassword(e.target.value)}/>
+          {/* <label className="label" htmlFor="password">Password:</label> */}
+          <input type="password" id="password" className="inputField"  onChange={(e) => setPassword(e.target.value)} placeholder='Password'/>
           <br />
           {userStore.error && <p className="errorMsg">Wrong email or password</p>}
           <button className="loginButton" type='submit'>Login</button>
@@ -127,9 +127,9 @@ function LoginPage() {
         <p>don't have an account? <Link href="/register">Register</Link></p>
 
       </div>
-      <div className="imageContainer">
+      {/* <div className="imageContainer">
         <Image src={model} alt="Login Image" className="loginImage" />
-      </div>
+      </div> */}
     </div>
     </>
   );

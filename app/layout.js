@@ -9,6 +9,7 @@ import { Suspense } from "react";
 import Loader from "@/componants/loader/Loader";
 import Navbar from "@/componants/navbar/Navbar";
 import Footer from "@/componants/footer/Footer";
+import NavbarSm from "@/componants/navbarSm/navbarSm";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -23,6 +24,9 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+
+
+  
   return (
     <html lang="en">
       <body className={montserrat.className}>

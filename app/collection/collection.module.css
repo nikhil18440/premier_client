@@ -22,9 +22,17 @@
 }
 
 .prodTitle{
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    font-weight: 600;
+    color: rgb(63, 63, 63);
 }
 
 .prodImg{
     object-fit: cover;
+}
+
+.prodPrice{
+    font-weight: 500;
+    color: gray;
 }

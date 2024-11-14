@@ -165,3 +165,27 @@
 .buttonssize{
     margin-bottom: 20px;
 }
+
+@media only screen and (max-width: 1000px){
+    .left{
+        display: flex;
+        height: 60vh;
+        overflow-x: scroll;
+        scrollbar-width: none;
+        width: 100vw;
+    }
+
+    .leftImg{
+        height: 60vh;
+        width: 100vw;
+    }
+
+    .top{
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* .leftImg{
+        height: 50%;
+    } */
+}

@@ -1,64 +1,145 @@
-import React from 'react'
+'use client'
+import { CiMenuBurger, CiShoppingCart, CiUser } from 'react-icons/ci';
+import './navbarSm.css';
+import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
+import { useSelector } from 'react-redux';
+import { HiMenu } from 'react-icons/hi';
+import { MdClose } from 'react-icons/md';
 
-export default function navbarSm() {
+const NavbarSm = () => {
+  const [toggle, setToggle] = useState(false)
+
+  const userStore = useSelector(state => state.user)
+  const cartStore = useSelector(state => state.cart)
+
+  var prods = 0
+  var cartSess = null
+  if(typeof window !== 'undefined'){
+    JSON.parse(sessionStorage.getItem('cartId'))
+  }
+  
+  if(cartSess){
+    prods = cartSess.products.length
+  }
+  useEffect(() => {
+    if(cartSess){
+      prods = cartSess.products.length
+    }
+  }, [cartStore.cart])
+  
+  var cartNum = null
+
+  if(cartStore.cart){
+    cartNum = cartStore.quantity
+  }
+
+  
+  var slideDiv = null
+
+
+  function toggleFunc(state) {
+    setToggle(state)
+   
+    if(typeof window !== "undefined"){
+      // slideDiv = window.document.getElementById('.items').style.animationName = 'toggleOn';
+      slideDiv = window.document.getElementsByClassName('.items')[0].style.backgroundColor = 'red';
+    }
+      // slideDiv
+   
+    console.log(slideDiv)
+  }
+
   return (
-    <div>
-        <div className={styles.middle}>
-        <ul className={styles.navLinks}>
-          <li className={styles.navItem}>
-            <Link href="/" className={styles.navLink}>
-              Home
-            </Link>
-          </li>
-          <li className={styles.navItem}>
-            <Link href="/review" className={styles.navLink}>
-              Review
-            </Link>
-          </li>
-          <li className={styles.navItem}>
-            <Link href="/collection" className={styles.navLink}>
-              Collection
-            </Link>
-          </li>
+    <div className='navbarSm'>
+
+      <div className='midWrapper'>
+
           {
-            userStore.user !== null ? <li className={styles.navItem}>
-            <Link href="/order_summary" className={styles.navLink}>
-              All orders
-            </Link>
-          </li> : <></>
+            userStore.user && (
+              <ul className='mid'>
+            <li className='iconItem' onClick={() => toggleFunc(false)}>
+                <Link href="/cart" className='iconLink'>
+                  <CiShoppingCart className="fas fa-shopping-cart" size={25}/>
+                </Link>
+                <span className='cartItemNum' style={cartNum===null || cartNum===0 ? {display:'none'}: {display:'block'}}>{cartStore.cart ? cartStore.cart.products.length : 0}</span>
+              </li>
+              <li className='iconItem' onClick={() => toggleFunc(false)}>
+                <Link href="/profile" className='iconLink'>
+                  <CiUser className="fas fa-list-alt" size={25}/>
+                </Link>
+              </li>
+          </ul>
+            )
           }
-          <li className={styles.navItem}>
-            <Link href="/aboutus" className={styles.navLink}>
-              About Us
-            </Link>
-          </li>
-          <li className={styles.navItem}>
-            <Link href="/contact" className={styles.navLink}>
-              Contact
-            </Link>
-          </li>
-        </ul>
-      </div>
-      <div className={styles.right}>
+
+      <div className='right'>
+        <HiMenu size={25} fontWeight={800} id='toggleIcon' onClick={() => toggleFunc(true)} className='toggleMenu'/>
+        {/* <CiMenuBurger size={23} fontWeight={800} onClick={() => setToggle(!toggle)}/> */}
+        
         {
-          userStore.user ? <ul className={styles.icons}>
-          <li className={styles.iconItem}>
-            <Link href="/cart" className={styles.iconLink}>
-              <CiShoppingCart className="fas fa-shopping-cart" size={30}/>
-            </Link>
-            <span className={styles.cartItemNum} style={cartNum===null || cartNum===0 ? {display:'none'}: {display:'block'}}>{cartNum}</span>
-          </li>
-          <li className={styles.iconItem}>
-            <Link href="/profile" className={styles.iconLink}>
-              <CiUser className="fas fa-list-alt" size={30}/>
-            </Link>
-          </li>
-        </ul> : <div className={styles.rightBtns}>
-          <Link href='/login' className={styles.loginBtn}>login</Link>
-          <Link href='/register' className={styles.registerBtn}>signup</Link>
-        </div>
+          toggle && (
+            <ul className='items'>
+
+              <li className='closeBtn' onClick={() => toggleFunc(false)}>
+                <MdClose size={25}/>
+              </li>
+
+              <li className='navItem' onClick={() => toggleFunc(false)}>
+              <Link href="/" className='navLink'>
+                Home
+              </Link>
+            </li>
+            {/* <li className='navItem' onClick={() => toggleFunc(false)}>
+              <Link href="/review" className='navLink'>
+                Review
+              </Link>
+            </li> */}
+            <li className='navItem' onClick={() => toggleFunc(false)}>
+              <Link href="/collection" className='navLink'>
+                Collection
+              </Link>
+            </li>
+            {
+              userStore.user !== null && <li className='navItem' onClick={() => toggleFunc(false)}>
+              <Link href="/order_summary" className='navLink'>
+                All orders
+              </Link>
+            </li>
+            }
+            <li className='navItem'  onClick={() => toggleFunc(false)}>
+              <Link href="/aboutus" className='navLink'>
+                About Us
+              </Link>
+            </li>
+            <li className='navItem'  onClick={() => toggleFunc(false)}>
+              <Link href="/contact" className='navLink'>
+                Contact
+              </Link>
+            </li>
+            {
+              !userStore.user && <>
+              <li className='navItem' onClick={() => toggleFunc(false)}>
+                <Link href='/login'>login</Link>
+              </li>
+              <li className='navItem' onClick={() => toggleFunc(false)}>
+                <Link href='/register'>signup</Link>
+              </li>
+            </>
+            }
+            </ul>
+
+          )
         }
+
+
+        
       </div>
-    </div>
-  )
-}
+      </div>
+      </div>
+
+
+  );
+};
+
+export default NavbarSm;

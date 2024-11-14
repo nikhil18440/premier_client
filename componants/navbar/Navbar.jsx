@@ -4,7 +4,9 @@ import Link from 'next/link';
 import styles from './navbar.module.css';
 import {CiUser,CiShoppingCart} from 'react-icons/ci'
 import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import NavbarSm from '../navbarSm/navbarSm';
+import { names } from '@/app/general_names';
 
 const Navbar = () => {
 
@@ -32,14 +34,26 @@ const Navbar = () => {
     cartNum = cartStore.quantity
   }
 
+  const [screenSize, setscreenSize] = useState()
+
+  useEffect(() => {
+    setscreenSize(window.screen.width)
+  }, [])
+  
+
+
+
   return (
     <nav className={styles.navbar}>
       <div className={styles.left}>
-        <a href="#" className={styles.logo}>
+        <a href="/" className={styles.logo}>
           {/* <img src="logo.png" alt="Company Logo" width="30" height="30" /> */}
-          Louvy
+          {names.comp_name}
         </a>
       </div>
+
+      {/* large navbar */}
+      
       <div className={styles.middle}>
         <ul className={styles.navLinks}>
           <li className={styles.navItem}>
@@ -47,11 +61,11 @@ const Navbar = () => {
               Home
             </Link>
           </li>
-          <li className={styles.navItem}>
+          {/* <li className={styles.navItem}>
             <Link href="/review" className={styles.navLink}>
               Review
             </Link>
-          </li>
+          </li> */}
           <li className={styles.navItem}>
             <Link href="/collection" className={styles.navLink}>
               Collection
@@ -76,6 +90,10 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
+
+
+
+
       <div className={styles.right}>
         {
           userStore.user ? <ul className={styles.icons}>
@@ -96,7 +114,19 @@ const Navbar = () => {
         </div>
         }
       </div>
+      
+
+
+        {/* small navbar */}
+        <div className={styles.smallbar}>
+          <NavbarSm/>
+        </div>
+      
+      
+      
+
     </nav>
+    
   );
 };
 

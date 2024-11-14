@@ -1,5 +1,5 @@
 export const names = {
-    comp_name: 'Louvy',
+    comp_name: 'fengxi',
     email: 'louvy.shop@gmail.com',
     address: 'Palakkad,Kerala',
     pNumber: ['+919961575137','+918075320288', '+917559956619'],

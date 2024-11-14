@@ -61,7 +61,7 @@
   .loginTitle {
     font-size: 24px;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 1.5rem;
   }
   
   .label {
@@ -77,9 +77,16 @@
     height: 40px;
     padding: 10px;
     font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
+    border: 1px solid #777777;
+    /* border-radius: 10px; */
     transition: border-color 0.3s ease;
+    margin-bottom: 5px;
+    background: none;
+  
+  }
+
+  ::placeholder{
+    color: rgb(159, 159, 159);
   }
   
   .inputField:focus {
@@ -94,15 +101,17 @@
     font-size: 16px;
     font-weight: bold;
     color: #fff;
-    background-color: #4CAF50;
+    background-color: #000000;
     border: none;
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-top: 10px;
+    margin-bottom: 1rem;
   }
   
   .loginButton:hover {
-    background-color: #3e8e41;
+    background-color: #474747;
   }
   
   /* Animations */
@@ -130,7 +139,7 @@
     }
   }
   
-  .inputField:focus {
+  /* .inputField:focus {
     animation: pulse 0.5s ease;
   }
   
@@ -140,5 +149,26 @@
     }
     100% {
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    }
+  } */
+
+
+  @media only screen and (max-width: 1200px){
+    .formContainer{
+      position: absolute;
+      /* background-color: whitesmoke; */
+      border-radius: 10px;
+      padding: 4rem;
+    }
+
+    .imageContainer{
+      width: 100%;
+      padding: 0px;
+      margin: 0px;
+    }
+
+    .loginPageContainer{
+      padding: 0px;
+      margin: 0px;
     }
   }

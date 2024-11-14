@@ -4,6 +4,7 @@ import {FaDiscord, FaInstagram} from 'react-icons/fa'
 import {FaMeta, FaTwitter} from 'react-icons/fa6'
 import styles from './footer.module.css'
 import Link from 'next/link'
+import { names } from '@/app/general_names'
 
 export default function Footer() {
   return (
@@ -12,7 +13,7 @@ export default function Footer() {
         <div className={styles.footerTop}>
         <section className={styles.sec1}>
             <h4 className={styles.footerHead}>Get touch with us</h4>
-            <p className={styles.footerDesc}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis ad culpa quos eius </p>
+            <p className={styles.footerDesc}> {names.comp_name} goal is to empower individuals to express their unique style through our carefully crafted clothing, blending modern trends with timeless elegance. </p>
             <ul>
                 <li>
                     <a href='/'><FaMeta/></a>

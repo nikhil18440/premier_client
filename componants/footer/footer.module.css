@@ -4,11 +4,16 @@
     align-items: center;
     justify-content: center;
     border-top: 1px solid black;
+    color: gray;
 }
 
 .footerTop{
     display: flex;
     width: 100%;
+}
+
+.footerHead{
+    color: rgb(45, 45, 45);
 }
 
 .footerbottom{
@@ -29,6 +34,7 @@
 
 .footerDesc{
     width: 80%;
+    line-height: 25px;
 }
 
 
@@ -54,7 +60,7 @@
 }
 
 .sec3 > ul > li:hover, .sec2 > ul > li :hover{
-    color: gray;
+    color: rgb(63, 63, 63);
 }
 
 
