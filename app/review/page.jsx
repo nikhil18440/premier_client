@@ -30,7 +30,9 @@ export default async function Page() {
     
     <>
     {/* <ClientComp data={dataStr}/> */}
-    <div></div>
+    <div>
+      <span></span>
+    </div>
     </>
 
   )
