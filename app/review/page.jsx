@@ -29,7 +29,8 @@ export default async function Page() {
   return (
     
     <>
-    <ClientComp data={dataStr}/>
+    {/* <ClientComp data={dataStr}/> */}
+    <div></div>
     </>
 
   )
