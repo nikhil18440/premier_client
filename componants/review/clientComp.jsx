@@ -1,8 +1,8 @@
 "use client"
 import React, { useRef, useState } from 'react';
 import styles from './review.module.css';
-import Navbar from '../../componants/navbar/Navbar';
-import Footer from '../../componants/footer/Footer';
+import Navbar from '../navbar/Navbar';
+import Footer from '../footer/Footer';
 import {FaStar, FaRegStar} from 'react-icons/fa'
 import submitFunc from './submit';
 import Broken from '@/componants/broken/broken';

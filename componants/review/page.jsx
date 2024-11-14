@@ -1,7 +1,7 @@
 import axios from 'axios'
 // import ClientComp from './clientComp.jsx'
-import Navbar from '../../componants/navbar/Navbar'
-import Footer from '../../componants/footer/Footer'
+import Navbar from '../navbar/Navbar'
+import Footer from '../footer/Footer'
 import ClientComp from './clientComp'
 
 
