@@ -27,6 +27,7 @@ export default async function page() {
   async function getData() {
     try {
       const res = await axios.get(`${process.env.API_ENDPOINT}/product/`)
+      console.log('data: ',res.data)
       return res.data
     } catch (error) {
       console.log(error)
@@ -35,7 +36,7 @@ export default async function page() {
   
 
   const data = await getData()
-  console.log(data)
+  // console.log(data)
 
 
 
@@ -55,7 +56,7 @@ export default async function page() {
     <div className={styles.container}>
        
           {
-            data ? data.map((item,i) => (
+            data.map((item,i) => (
               <div className={styles.prod} key={i}>
                 <Link href={{
                   pathname:`/singledrop`,
@@ -69,7 +70,7 @@ export default async function page() {
                 <h4 className={styles.prodTitle}>{item.title}</h4>
                 <h4 className={styles.prodPrice}>&#8377; {item.price}</h4>
               </div>
-            )) : <Broken/>
+            ))
           }
 
         {/* </div> */}
