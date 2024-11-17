@@ -12,6 +12,7 @@ import Footer from '../../componants/footer/Footer'
 import axios from 'axios'
 import pageReq from './pageReq'
 import Broken from '@/componants/broken/broken'
+import ClientComp from '../clientComps'
 // import { useSearchParams } from 'next/navigation'
 // import { useRouter } from 'next/navigation'
 
@@ -53,28 +54,7 @@ export default async function page() {
   return (
     <>
 
-    <div className={styles.container}>
-       
-          {
-            data.map((item,i) => (
-              <div className={styles.prod} key={i}>
-                <Link href={{
-                  pathname:`/singledrop`,
-                  query: {
-                    id: item._id
-                  }
-                }}>
-                  <img className={styles.prodImg} src={item.images[0]} width={350} height={450} objectFit='cover'/>
-                  {/* <div c></div> */}
-                </Link>
-                <h4 className={styles.prodTitle}>{item.title}</h4>
-                <h4 className={styles.prodPrice}>&#8377; {item.price}</h4>
-              </div>
-            ))
-          }
-
-        
-    </div>
+    <ClientComp data={data}/>
     </>
   )
 
