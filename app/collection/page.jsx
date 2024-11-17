@@ -31,12 +31,14 @@ export default async function page() {
       console.log('data: ',res.data)
       return res.data
     } catch (error) {
-      console.log(error)
+      console.log('this is an error')
     }
   }
+  // console.log(await getData())
   
 
   const data = await getData()
+
   // console.log(data)
 
 
@@ -54,7 +56,30 @@ export default async function page() {
   return (
     <>
 
-    <ClientComp data={data}/>
+      <div className="container">
+        <div className={styles.list}>
+          <div className={styles.listItem}>
+          {
+                data ? data.map((item,i) => (
+                  <div className={styles.prod} key={i}>
+                    <Link href={{
+                      pathname:`/singledrop`,
+                      query: {
+                        id: item._id
+                      }
+                    }}>
+                      <img className={styles.prodImg} src={item.images[0]} width={350} height={450} objectFit='cover'/>
+                      {/* <div c></div> */}
+                    </Link>
+                    <h4 className={styles.prodTitle}>{item.title}</h4>
+                    <h4 className={styles.prodPrice}>&#8377; {item.price}</h4>
+                  </div>
+                )) : <Broken/>
+              }
+          </div>
+        </div>
+      </div>
+
     </>
   )
 

@@ -87,6 +87,10 @@
 
   .iconItem{
     position: relative;
+    color: #c1c1c1;
+  }
+  .iconLink{
+    color: #c1c1c1;
   }
 
   .cartItemNum{

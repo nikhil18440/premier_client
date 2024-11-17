@@ -21,6 +21,7 @@ export default async function Home() {
   var data = await getData()
   data = JSON.stringify(data)
   console.log(data)
+  console.log(process.env.HI)
   
   
   

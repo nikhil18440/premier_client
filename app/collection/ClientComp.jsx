@@ -1,6 +1,15 @@
 'use client'
 import Broken from '@/componants/broken/broken'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import styles from './collection.module.css'
+import Image from 'next/image'
+import prod from '../../public/prods.jpg'
+import Navbar from '../../componants/navbar/Navbar'
+import Link from 'next/link'
+import Footer from '../../componants/footer/Footer'
+import pageReq from './pageReq'
+
+
 
 export default function ClientComp(props) {
 
