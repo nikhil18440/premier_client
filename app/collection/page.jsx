@@ -12,7 +12,7 @@ import Footer from '../../componants/footer/Footer'
 import axios from 'axios'
 import pageReq from './pageReq'
 import Broken from '@/componants/broken/broken'
-import ClientComp from '../clientComps'
+import ClientComp from './ClientComp.jsx'
 // import { useSearchParams } from 'next/navigation'
 // import { useRouter } from 'next/navigation'
 
