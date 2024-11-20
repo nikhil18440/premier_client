@@ -12,7 +12,7 @@ export default function Footer() {
 
         <div className={styles.footerTop}>
         <section className={styles.sec1}>
-            <h4 className={styles.footerHead}>Get touch with us</h4>
+            <h4 className={styles.footerHead}>Get in touch with us</h4>
             <p className={styles.footerDesc}> {names.comp_name} goal is to empower individuals to express their unique style through our carefully crafted clothing, blending modern trends with timeless elegance. </p>
             <ul>
                 <li>
@@ -68,7 +68,7 @@ export default function Footer() {
         </div>
 
         <div className={styles.footerbottom}>
-            louvy
+            {names.comp_name}
         </div>
 
 

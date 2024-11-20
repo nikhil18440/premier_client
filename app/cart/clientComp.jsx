@@ -12,8 +12,11 @@ import { delProduct, setCart, setCartTotal, setCartTotalMinus } from '@/redux/ca
 import axios from 'axios'
 import Loader from '@/componants/loader/Loader'
 import Broken from '@/componants/broken/broken'
+import Script from 'next/script'
+import Razorpay from 'razorpay'
 
 export default function ClientComp({prodArr}) {
+
 
     const cartStore = useSelector(state => state.cart)
     const userStore = useSelector(state => state.user)
@@ -121,12 +124,67 @@ export default function ClientComp({prodArr}) {
     }
 
 
+    // PAYMENT METHODS USING RAZORPAY
+    const Amount = 100
+    const [isProcessing, SetIsProcessing] = useState(false)
+    
+    const handlePayment = async () => {
+        console.log('handling oaymnet')
+        SetIsProcessing(true)
 
-    console.log("cart: ", cartStore)
+        try {
+            //create order
+            const response = await fetch(`${process.env.API_ENDPOINT}/payment`, {method: "POST"})
+            const data = await response.json()
+
+            // INITIALIZE RAZORPAY
+            const options = {
+                "key": 'rzp_test_sM994cU3j8AY7A', // Enter the Key ID generated from
+                "amount": Amount, // integer amount
+                "currency": "INR", // 3 letter ISO code of the currency
+                "name": "fengxi", // the name of your website
+                "description": "Test Transaction", // the description of the transaction
+                "order_id": data.orderId, // the order_id of
+                "handler": function (response) {
+                    console.log('payment success', response)
+                },
+                "prefill": {
+                    "name": "Rahul",
+                    "email": "rahul@example.com",
+                    "contact": "9999999999",
+                },
+                "theme":{
+                    "color": "#3399cc"
+                },
+        
+            }
+
+            // const rzp1 = new Razorpay({
+            //     key_id: 'rzp_test_sM994cU3j8AY7A',
+            //     key_secret: 'PpJukXmg78wH3mmq3MV7SXZR'
+            // },options)
+            
+            const rzp1 = new window.Razorpay(options)
+            rzp1.open()
+
+
+
+        } catch (error) {
+            console.log("payment failed", error)
+        }finally{
+            SetIsProcessing(false)
+        }
+    }
+    
+    
 
   return (
     <>
     {/* <Navbar/> */}
+    <Script
+        id="razorpay-checkout-js"
+        src="https://checkout.razorpay.com/v1/checkout.js"
+      />
     <div className={styles.cart}>
 
         
@@ -165,7 +223,9 @@ export default function ClientComp({prodArr}) {
                 <h4>SUBTOTAL</h4>
                 <h4>&#8377; {cartStore.total}</h4>
             </div>
-            <button className={styles.rightCheckout}>CHECKOUT</button>
+                <button className={styles.rightCheckout} onClick={() => handlePayment()} disabled={isProcessing}>
+                    {isProcessing ? 'Processing...': 'CHECKOUT'}
+                </button>
             </div>
             </div>
             </> : (

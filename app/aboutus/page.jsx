@@ -9,7 +9,7 @@ import { names } from '../general_names'
 export default function page(props) {
   return (
     <>
-      <Image src={tshirt} height={200} className={styles.aboutusImg}/>
+      {/* <Image src={tshirt} height={200} className={styles.aboutusImg}/> */}
       <div className={styles.aboutus}>
       <div className={styles.aboutusDiv}>
       <h3>Welcome to {names.comp_name}!</h3>

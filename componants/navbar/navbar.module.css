@@ -1,13 +1,16 @@
 /* components/Navbar.module.css */
+
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
+    /* padding: 1rem 2rem; */
     background-color: #000000;
     border-bottom: 1px solid #ddd;
     height: 65px;
     color: rgb(211, 211, 211);
+    padding: 0px;
+    margin: 0px;
   }
   
   .left {
@@ -18,11 +21,18 @@
   .logo {
     margin-right: 1rem;
     font-size: larger;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: aqua; */
+    border: none;
   }
   
   .logo img {
-    width: 30px;
-    height: 30px;
+    /* background-color: antiquewhite; */
+    /* width: 70px; */
+    height: 35px;
+    object-fit: contain;
   }
   
   .middle {
@@ -112,6 +122,9 @@
   }
 
   .rightBtns{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     /* display: flex;
     align-items: center;
     justify-content: center; */

@@ -61,14 +61,14 @@
     margin-top: 20px;
     border: none;
     border-radius: 5px;
-    background-color: #4CAF50;
+    background-color: #0c0c0c;
     color: #fff;
     font-size: 16px;
     cursor: pointer;
   }
   
   .submitButton:hover {
-    background-color: #3e8e41;
+    background-color: #212121;
   }
   
   .alreadyHaveAccountText {
@@ -79,11 +79,11 @@
   
   .alreadyHaveAccountText a {
     text-decoration: none;
-    color: #4CAF50;
+    color: #0c0c0c;
   }
   
   .alreadyHaveAccountText a:hover {
-    color: #3e8e41;
+    color: #202020;
   }
   
   .rightSideContainer {

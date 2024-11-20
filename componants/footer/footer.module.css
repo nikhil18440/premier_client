@@ -20,7 +20,7 @@
     width: 90%;
     border-top: 1px solid rgb(146, 146, 146);
     text-align: center;
-    padding: 10px;
+    /* padding: 10px; */
 }
 
 .sec1, .sec2, .sec3{

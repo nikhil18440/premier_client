@@ -10,7 +10,7 @@
 
 .top{
     width: 100vw;
-    /* height: 100vh; */
+    height: 90vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -26,10 +26,67 @@
     justify-content: center;
     position: relative; */
     /* z-index: 999; */
-    height: 100vh;
-    overflow-y: scroll;
-    scrollbar-width: none;
+    height: 100%;
+    /* overflow-y: hidden;
+    scrollbar-width: none; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 0px;
+    margin-top: 0px;
+    /* background-color: aqua; */
 }
+
+.leftCover{
+    width: 80%;
+    height: 35vw;
+    overflow-y:scroll;
+}
+
+/* .leftCover{
+    scrollbar-width:thin;
+    scrollbar-color: #7e7e7e #DFE9EB;
+} */
+
+  .leftCover::-webkit-scrollbar-button {
+    height: 0;
+    width: 0
+ }
+
+
+ .leftCover::-webkit-scrollbar {
+    height: 10px;
+    width: 5px;
+  }
+  .leftCover::-webkit-scrollbar-track {
+    /* border-radius: 5px; */
+    background-color: #DFE9EB;
+  }
+  
+  .leftCover::-webkit-scrollbar-track:hover {
+    background-color: #B8C0C2;
+  }
+  
+  .leftCover::-webkit-scrollbar-track:active {
+    background-color: #B8C0C2;
+  }
+  
+  .leftCover::-webkit-scrollbar-thumb {
+    /* border-radius: 5px; */
+    background-color: #a7a7a7;
+  }
+  
+  .leftCover::-webkit-scrollbar-thumb:hover {
+    background-color: #a7a7a7;
+  }
+  
+  .leftCover::-webkit-scrollbar-thumb:active {
+    background-color: #a7a7a7;
+  }
+
+
+
+
 
 .right{
     flex: 1;
@@ -51,7 +108,8 @@
 
 .leftImg{
     width: 100% !important;
-    object-fit: cover !important;
+    /* height: 35rem; */
+    object-fit: contain !important;
 }
 .rightImg{
     width: 100% !important;
@@ -168,21 +226,38 @@
 
 @media only screen and (max-width: 1000px){
     .left{
-        display: flex;
-        height: 60vh;
-        overflow-x: scroll;
-        scrollbar-width: none;
+        /* display: flex; */
+        height: 100%;
+        /* overflow-x: scroll; */
+        /* scrollbar-width: none; */
         width: 100vw;
+        /* flex: 2; */
+    }
+
+    .leftCover{
+      height: 80vh;
+      display: flex;
+      
+      overflow-x:scroll;
+      overflow-y:hidden;
+      /* margin-top: 30rem; */
     }
 
     .leftImg{
+      
+    object-fit: cover !important;
+    }
+
+    /* .leftImg{
         height: 60vh;
         width: 100vw;
-    }
+    } */
 
     .top{
         display: flex;
         flex-direction: column;
+        height: 80vh;
+        margin-top: 18rem;
     }
 
     /* .leftImg{

@@ -212,11 +212,13 @@ export default function ClientComp(props) {
             data ? 
             <>
             <div className={styles.left}>
-            <img className={styles.leftImg} src={data.images[0]} objectFit='cover'/>
+           <div className={styles.leftCover}>
+           <img className={styles.leftImg} src={data.images[0]} objectFit='cover'/>
             <img className={styles.leftImg} src={data.images[1]} objectFit='cover'/>
             <img className={styles.leftImg} src={data.images[2]} objectFit='cover'/>
             <img className={styles.leftImg} src={data.images[0]} objectFit='cover'/>
             <img className={styles.leftImg} src={data.images[0]} objectFit='cover'/>
+           </div>
           </div>
 
           <div className={styles.right}>

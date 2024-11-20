@@ -44,11 +44,11 @@ const Navbar = () => {
 
 
   return (
-    <nav className={styles.navbar}>
+    <div className={styles.navbar}>
       <div className={styles.left}>
         <a href="/" className={styles.logo}>
-          {/* <img src="logo.png" alt="Company Logo" width="30" height="30" /> */}
-          {names.comp_name}
+          <img src="fengLogo_W.png" alt="Company Logo" />
+          {/* {names.comp_name} */}
         </a>
       </div>
 
@@ -125,7 +125,7 @@ const Navbar = () => {
       
       
 
-    </nav>
+    </div>
     
   );
 };

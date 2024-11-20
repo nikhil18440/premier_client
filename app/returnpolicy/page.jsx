@@ -6,7 +6,7 @@ import { names } from '../general_names'
 
 export default function page() {
   return (
-    <>
+    <div className={styles.mainDiv}>
     <div class={styles.container}>
   <h3>{process.env.COMP}{names.comp_name} Return and Refund Policy</h3>
   <p>Welcome to {names.comp_name}! We strive to ensure our customers have a great shopping experience with us. We understand that a comprehensive return and refund policy is an important aspect of this experience.</p>
@@ -74,7 +74,7 @@ export default function page() {
 
   <p>Sincerely,</p>
   <p>The {names.comp_name} Team</p>
+  </div>
 </div>
-</>
   )
 }

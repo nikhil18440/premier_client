@@ -76,7 +76,7 @@ export default function ClientComp(props) {
 
   return (
     <>
-    {/* {
+    {
         data ? data.map((item,i) => (
           <div className={styles.prodDiv} key={i}>
             <img src={item.images[0]} className={styles.prodImg}/>
@@ -86,22 +86,22 @@ export default function ClientComp(props) {
             </div>
           </div>
         )) : <Broken/>
-      } */}
+      }
 
-      <div className={styles.prodDiv}>
+      {/* <div className={styles.prodDiv}>
         <img src='prod.jpg' className={styles.prodImg}/>
         <img src='prod.jpg' className={styles.prodImg}/>
         <img src='prod.jpg' className={styles.prodImg}/>
         <img src='prod.jpg' className={styles.prodImg}/>
-        {/* <img src='model2.jpg' className={styles.prodImg}/>
+        <img src='model2.jpg' className={styles.prodImg}/>
         <img src='model3.jpg' className={styles.prodImg}/>
         <img src='model4.jpg' className={styles.prodImg}/>
-        <img src='model5.jpg' className={styles.prodImg}/> */}
-        {/* <div className={styles.prodText}>
+        <img src='model5.jpg' className={styles.prodImg}/>
+        <div className={styles.prodText}>
               <h4>{item.title}</h4>
               <button className={styles.shopbtn} onClick={() => handleClick(item._id)}>Shop now</button>
-            </div> */}
-      </div>
+            </div>
+      </div> */}
     </>
   )
 }

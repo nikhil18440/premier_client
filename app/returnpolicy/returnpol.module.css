@@ -1,5 +1,18 @@
+.mainDiv{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 5rem 0px;
+}
+
 .container{
-    padding: 4rem 20rem;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    /* padding: 4rem 20rem; */
     line-height: 35px;
 }
 
@@ -8,6 +21,7 @@
 }
 .container > h4{
     margin-bottom: 1rem;
+    
 }
 .container > h5{
     margin-bottom: 1rem;
@@ -15,6 +29,7 @@
 
 .container > ol > li > h5{
     margin-bottom: 1rem;
+    font-size: 17px;
 }
 .container > ol > li > ul{
     margin-bottom: 1.5rem;
