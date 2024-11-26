@@ -1,0 +1,42 @@
+/* src/OrderTable.module.css */
+
+.tableResponsive {
+    overflow-x: auto; /* Allow horizontal scrolling on small screens */
+  }
+  
+  .orderTable {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .orderTable th,
+  .orderTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .orderTable th {
+    background-color: #f2f2f2;
+  }
+  
+  .viewOrderButton {
+    padding: 6px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .viewOrderButton:hover {
+    background-color: #0056b3;
+  }
+  
+  @media (max-width: 600px) {
+    .orderTable th,
+    .orderTable td {
+      font-size: 12px; /* Smaller font on small screens */
+      padding: 6px;
+    }
+  }

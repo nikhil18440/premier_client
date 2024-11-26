@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 // var getCart
 var getCart
 if(typeof window !== 'undefined'){
-    getCart = JSON.parse(window.sessionStorage.getItem('cartId'))
+    getCart = JSON.parse(window.localStorage.getItem('cartId'))
 }
 // useEffect(() => {
 
@@ -27,7 +27,7 @@ const cartSlice = createSlice({
         addProduct: (state,action) => {
             state.quantity = state.quantity + 1
             state.cart.products.push(action.payload)
-            sessionStorage.setItem('cartId',JSON.stringify(state.cart))
+            localStorage.setItem('cartId',JSON.stringify(state.cart))
             // state.total = state.total + action.payload.price
         },
         delProduct: (state,action) => {

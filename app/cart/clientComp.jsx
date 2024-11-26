@@ -18,6 +18,7 @@ import Razorpay from 'razorpay'
 export default function ClientComp({prodArr}) {
 
 
+
     const cartStore = useSelector(state => state.cart)
     const userStore = useSelector(state => state.user)
 
@@ -115,7 +116,7 @@ export default function ClientComp({prodArr}) {
                 console.log('mycart:',cartStore)
                 // dispatch(setCartTotalMinus(prodPrice))
                 if(typeof window !== 'undefined'){
-                    sessionStorage.setItem('cartId',JSON.stringify(res.data))
+                    localStorage.setItem('cartId',JSON.stringify(res.data))
                 }
                 }
         } catch (error) {
@@ -124,10 +125,54 @@ export default function ClientComp({prodArr}) {
     }
 
 
+
+    // clear the cart
+    async function handleClearCart() {
+        try {
+            const res = await axios.put(`${process.env.API_ENDPOINT}/cart/${userStore.user._id}`,{
+
+            _id: cartStore.cart._id,
+            products: [],
+            total: 0
+            },{
+            headers: {
+                token: `Bearer ${userStore.user.accessToken}`
+            }
+            })
+
+            if(res.data){
+                
+                dispatch(setCart(res.data))
+                if(typeof window !== 'undefined'){
+                    localStorage.setItem('cartId',JSON.stringify(res.data))
+                }
+                }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+
+
+
     // PAYMENT METHODS USING RAZORPAY
     const Amount = 100
     const [isProcessing, SetIsProcessing] = useState(false)
+    const [paymentSuccess, setPaymentSuccess] = useState(false)
+
+    useEffect(() => {
+        if(paymentSuccess){
+            handleClearCart()
+            
+            redirect('/order_summary')
+          }
+    }, [paymentSuccess])
+
+    async function createOrder() {
+        
+    }
     
+
     const handlePayment = async () => {
         console.log('handling oaymnet')
         SetIsProcessing(true)
@@ -146,6 +191,7 @@ export default function ClientComp({prodArr}) {
                 "description": "Test Transaction", // the description of the transaction
                 "order_id": data.orderId, // the order_id of
                 "handler": function (response) {
+                    setPaymentSuccess(true)
                     console.log('payment success', response)
                 },
                 "prefill": {

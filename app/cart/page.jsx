@@ -19,7 +19,7 @@ export default function page() {
     // const data = await getData()
     // var dataStr = JSON.stringify(data)
 
-    // var cart = JSON.parse(sessionStorage.getItem('cartID'))
+    // var cart = JSON.parse(localStorage.getItem('cartID'))
     const cartStore = useSelector(state => state.cart)
     const userStore = useSelector(state => state.user)
     const cart = cartStore.cart
@@ -83,12 +83,12 @@ export default function page() {
                       }, {headers: {token:`Bearer ${user.accessToken}`}})
                       
                       if(typeof window !== 'undefined'){
-                        sessionStorage.setItem('cartId', JSON.stringify(newCart.data))
+                        localStorage.setItem('cartId', JSON.stringify(newCart.data))
                       }
                       dispatch(setCart(newCart.data))
                     }else{
                       if(typeof window !== 'undefined'){
-                        sessionStorage.setItem('cartId', JSON.stringify(resCart.data))
+                        localStorage.setItem('cartId', JSON.stringify(resCart.data))
                       }
                       dispatch(setCart(resCart.data))
                     }

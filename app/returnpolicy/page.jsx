@@ -1,10 +1,18 @@
+'use client'
 import React from 'react'
 import Navbar from '../../componants/navbar/Navbar'
 import Footer from '../../componants/footer/Footer'
 import styles from './returnpol.module.css'
 import { names } from '../general_names'
+import { useSelector } from 'react-redux'
 
 export default function page() {
+
+  const orderSelector = useSelector(state => state.order)
+
+  console.log(orderSelector)
+
+
   return (
     <div className={styles.mainDiv}>
     <div class={styles.container}>

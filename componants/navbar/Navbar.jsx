@@ -16,7 +16,7 @@ const Navbar = () => {
   var prods = 0
   var cartSess = null
   if(typeof window !== 'undefined'){
-    JSON.parse(sessionStorage.getItem('cartId'))
+    JSON.parse(localStorage.getItem('cartId'))
   }
   
   if(cartSess){

@@ -37,8 +37,8 @@ function LoginPage() {
         setuser(res.data)
         dispatch(userFetchSuccess(res.data))
         if(typeof window !== 'undefined'){
-          sessionStorage.setItem('user', JSON.stringify(res.data))
-          sessionStorage.setItem('token', JSON.stringify(res.data.accessToken))       
+          localStorage.setItem('user', JSON.stringify(res.data))
+          localStorage.setItem('token', JSON.stringify(res.data.accessToken))       
         }
         // find or set cart
 
@@ -57,7 +57,7 @@ function LoginPage() {
               dispatch(setCart(resCart.data))
               console.log('found an existing cart:', resCart.data)
               if(typeof window !== 'undefined'){
-                sessionStorage.setItem('cartId', JSON.stringify(resCart.data))
+                localStorage.setItem('cartId', JSON.stringify(resCart.data))
               }
               
 
@@ -71,7 +71,7 @@ function LoginPage() {
                 
                 console.log('ress:',newCart.data)
                 if(typeof window !== 'undefined'){
-                  sessionStorage.setItem('cartId', JSON.stringify(newCart.data))
+                  localStorage.setItem('cartId', JSON.stringify(newCart.data))
                 }
                 dispatch(setCart(newCart.data))
               } catch (error) {

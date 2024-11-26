@@ -5,7 +5,7 @@ import { useEffect } from "react";
 var getUSer
 
 if (typeof window !== 'undefined') {
-    getUSer = JSON.parse(window.sessionStorage.getItem('user'))
+    getUSer = JSON.parse(window.localStorage.getItem('user'))
 }
 // useEffect(() => {
 //     getUSer = 
@@ -15,7 +15,7 @@ if (typeof window !== 'undefined') {
 const userSlice = createSlice({
     name: "user",
     initialState: {
-        // JSON.parse(sessionStorage.getItem('user')) ||
+        // JSON.parse(localStorage.getItem('user')) ||
         user: getUSer || null ,
         isFetching: false,
         error: false

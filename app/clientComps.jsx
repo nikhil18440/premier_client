@@ -45,10 +45,10 @@ export default function ClientComp(props) {
 
     
 
-// let cart = sessionStorage.setItem('cartId', JSON.stringify(Findcart(userStore,cartStore,token)))
+// let cart = localStorage.setItem('cartId', JSON.stringify(Findcart(userStore,cartStore,token)))
 
 // if(cart===false){
-//   const localUser = JSON.parse(sessionStorage.getItem('cartId'))
+//   const localUser = JSON.parse(localStorage.getItem('cartId'))
 //   if(localUser){
 //     dispatch(setCart(localUser))
 //   }
@@ -56,13 +56,13 @@ export default function ClientComp(props) {
 
 // useEffect(() => {
 //   if(userStore.user){
-//     token  = `Bearer ${JSON.parse(window.sessionStorage.getItem('token'))}`
-//     sessionStorage.setItem('cartId',JSON.stringify(Findcart(userStore,cartStore,token)))
+//     token  = `Bearer ${JSON.parse(window.localStorage.getItem('token'))}`
+//     localStorage.setItem('cartId',JSON.stringify(Findcart(userStore,cartStore,token)))
 //   }
 // }, [userStore.user])
 
 // const updateCart = useCallback(() => {
-//   const localUser = JSON.parse(sessionStorage.getItem('cartId'))
+//   const localUser = JSON.parse(localStorage.getItem('cartId'))
 //     if(localUser){
 //       dispatch(setCart(localUser))
 //     }

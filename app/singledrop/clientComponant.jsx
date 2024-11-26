@@ -37,7 +37,7 @@ export default function ClientComp(props) {
   const userStore = useSelector(state => state.user)
   const cartStore = useSelector(state => state.cart)
 
-  const token = JSON.parse(sessionStorage.getItem('token'))
+  const token = JSON.parse(localStorage.getItem('token'))
 
 
   const [qty, setQty] = useState(1);
@@ -86,7 +86,7 @@ export default function ClientComp(props) {
   //     // dispatch(addProduct(prod))
   //     // console.log("datatttt:", addedProd.data)   
   //     // dispatch(setCart(addedProd.data))
-  //     // sessionStorage.setItem('cartId',JSON.stringify(addedProd.data))
+  //     // localStorage.setItem('cartId',JSON.stringify(addedProd.data))
   //     // console.log("carttt1:",cartStore.cart)
   //     // console.log("carttt2:",cartStore.cart)
   //   }
@@ -130,12 +130,12 @@ export default function ClientComp(props) {
                 }, {headers: {token:`Bearer ${user.accessToken}`}})
                 
                 if(typeof window !== 'undefined'){
-                  sessionStorage.setItem('cartId', JSON.stringify(newCart.data))
+                  localStorage.setItem('cartId', JSON.stringify(newCart.data))
                 }
                 dispatch(setCart(newCart.data))
               }else{
                 if(typeof window !== 'undefined'){
-                  sessionStorage.setItem('cartId', JSON.stringify(resCart.data))
+                  localStorage.setItem('cartId', JSON.stringify(resCart.data))
                 }
                 dispatch(setCart(resCart.data))
               }
