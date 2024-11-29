@@ -8,12 +8,15 @@ import Navbar from '../../componants/navbar/Navbar'
 import Link from 'next/link'
 import Footer from '../../componants/footer/Footer'
 import pageReq from './pageReq'
+import { useSelector } from 'react-redux'
 
 
 
 export default function ClientComp(props) {
 
    const [clientData, setclientData] = useState(props.data) 
+  const userState = useSelector(state => state.user)
+
   useEffect(() => {
     setclientData(props.data)
   }, [props])
@@ -26,7 +29,7 @@ export default function ClientComp(props) {
             clientData ? clientData.map((item,i) => (
               <div className={styles.prod} key={i}>
                 <Link href={{
-                  pathname:`/singledrop`,
+                  pathname: `/singledrop` ,
                   query: {
                     id: item._id
                   }

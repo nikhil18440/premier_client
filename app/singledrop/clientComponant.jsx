@@ -74,10 +74,10 @@ export default function ClientComp(props) {
 
   const [noUser, setNoUser] = useState(false)
   const makeLogin = useLayoutEffect(() => {
-    if(noUser){
+    if(!userStore.user){
       redirect('/login')
     }
-  }, [noUser])
+  }, [])
 
   const [addedProd, setaddedProd] = useState(null)
 
@@ -151,7 +151,8 @@ export default function ClientComp(props) {
 
   async function handleSubmit() {
 
-    const saveCart = await handleSubmitFunc(userStore,cartStore,Size,qty,data,token)
+    // if(userStore.user){
+      const saveCart = await handleSubmitFunc(userStore,cartStore,Size,qty,data,token)
     
       let prod = {
         productId: data._id,
@@ -164,39 +165,9 @@ export default function ClientComp(props) {
         fetchCart()
         console.log("lessgoooo:",saveCart)
       }
-    
-    // dispatch(setCartTotal(parseInt(data.price * qty)))
-
-    // if(userStore.user){
-    //   try {
-    //     console.log(userStore.user._id, cartStore.cart._id)
-    //     let prod = {
-    //       productId: data._id,
-    //       size: Size,
-    //       quantity: qty
-    //     }
-    //     const res = await axios.put(`${process.env.API_ENDPOINT}/cart/${userStore.user._id}`,{
-    //       // userId: userStore.user._id,
-    //       _id: cartStore.cart._id,
-    //       products: [...cartStore.cart.products, prod],
-    //       total: cartStore.total + (data.price * qty)
-    //     },{
-    //       headers: {
-    //         token: `Bearer ${token}`
-    //       }
-    //     })
-    //     // if (res.data) {
-    //     dispatch(setCartTotal(parseInt(data.price * qty)))
-    //     setaddedProd(res)
-
-        
-    //   } catch (error) {
-    //     console.log(error)
-    //   }
     // }else{
-    //   setNoUser(true)
+      // redirect('/profile')
     // }
-    
     
   }
 
