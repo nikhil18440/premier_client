@@ -1,11 +1,25 @@
+'use client'
 // src/OrderTable.js
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './style.module.css'; // Import CSS module
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
 
 const OrderTable = ({ orders }) => {
-    
+
+  const [revOrders, setRevOrders] = useState(null)
+  
+  useEffect(() => {
+    if(orders){
+      let newOrder = []
+      for (let i = orders.length-1; i >= 0 ; i--) {
+        newOrder.push(orders[i])
+      }
+      setRevOrders(newOrder)
+    }
+    console.log(revOrders)
+  }, [orders])
+  
 
   return (
     <div className={styles.tableResponsive}>
@@ -21,8 +35,8 @@ const OrderTable = ({ orders }) => {
             <th>Actions</th>
           </tr>
         </thead>
-        <tbody>
-          {orders && orders.map((order) => (
+        <tbody className={styles.tablebody}>
+          {revOrders && revOrders.map((order) => (
             <tr key={order.orderId}>
               <td>{order._id}</td>
               <td>{new Date(order.orderDate).toLocaleDateString()}</td>

@@ -16,12 +16,13 @@ export default function OrderPage() {
   const searchParams = useSearchParams()
   const orderIdQuery = searchParams.get('orderIdQuery')
   console.log('query:',orderIdQuery)
-
+  
   const dispatch = useDispatch()
-
+  
   const [order, setSingleOrder] = useState()
   const [products, setProducts] = useState([])
-
+  
+  console.log('jhjhhjh:', order)
   console.log('first')
 
   async function findOrder() {
@@ -56,7 +57,7 @@ export default function OrderPage() {
   }
 
   useEffect(() => {
-    
+    console.log('this isss:',order)
     findOrder()
     
   }, [])

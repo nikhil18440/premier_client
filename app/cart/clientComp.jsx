@@ -14,6 +14,8 @@ import Loader from '@/componants/loader/Loader'
 import Broken from '@/componants/broken/broken'
 import Script from 'next/script'
 import Razorpay from 'razorpay'
+import { addtoOrder } from '@/redux/orderReducer'
+import toast, { Toaster } from 'react-hot-toast'
 
 export default function ClientComp({prodArr}) {
 
@@ -47,7 +49,7 @@ export default function ClientComp({prodArr}) {
             try {
                 const res = await axios.get(`${process.env.API_ENDPOINT}/product/${prodId}`)
                 setProdArr(state=>[...state,[res.data, cart.products[i].size, cart.products[i].quantity, cart.products[i]._id]])
-                console.log(ProdArr)
+                console.log('oooo:',ProdArr)
                 setSuccess(true)
                 seterror(false)
             } catch (error) {
@@ -159,48 +161,87 @@ export default function ClientComp({prodArr}) {
     const Amount = 100
     const [isProcessing, SetIsProcessing] = useState(false)
     const [paymentSuccess, setPaymentSuccess] = useState(false)
+    const [paymentError, setPaymentError] = useState(false)
 
     useEffect(() => {
+        
         if(paymentSuccess){
+            createOrder()
             handleClearCart()
-            
-            redirect('/order_summary')
+            redirect('/profile')
           }
     }, [paymentSuccess])
 
     async function createOrder() {
-        
+        let products = []
+        let totalQuantity = 0
+        for (let i = 0; i < ProdArr.length; i++) {
+            totalQuantity += ProdArr[i][2]
+            products.push({
+                productId: ProdArr[i][0]._id,
+                size: ProdArr[i][1],
+                quantity: ProdArr[i][2],
+            })
+        }
+        console.log('everrrrr:',products)
+      
+        try {
+            const newOrder = await axios.post(`${process.env.API_ENDPOINT}/order/${userStore.user._id}`, {
+                userId: userStore.user._id,
+                total: cartStore.total,
+                status: 'pending',
+                quantity: totalQuantity,
+                products: products
+            }, {headers: {token:`Bearer ${userStore.user.accessToken}`}})
+            
+            dispatch(addtoOrder(newOrder.data))
+            
+            console.log(newOrder.data)
+
+        } catch (error) {
+            console.log(error)
+        }
     }
     
 
     const handlePayment = async () => {
-        console.log('handling oaymnet')
+        console.log('handling paymnet')
         SetIsProcessing(true)
 
         try {
             //create order
-            const response = await fetch(`${process.env.API_ENDPOINT}/payment`, {method: "POST"})
+            const response = await fetch(`${process.env.API_ENDPOINT}/payment`,{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'token': `Bearer ${userStore.user.accessToken}`
+                    },
+                    body: JSON.stringify({
+                        total: cartStore.total,
+                    })
+            })
             const data = await response.json()
 
             // INITIALIZE RAZORPAY
             const options = {
                 "key": 'rzp_test_sM994cU3j8AY7A', // Enter the Key ID generated from
-                "amount": Amount, // integer amount
+                "amount": cartStore.total*100, // integer amount
                 "currency": "INR", // 3 letter ISO code of the currency
                 "name": "fengxi", // the name of your website
                 "description": "Test Transaction", // the description of the transaction
                 "order_id": data.orderId, // the order_id of
                 "handler": function (response) {
                     setPaymentSuccess(true)
+                    setPaymentError(false)
                     console.log('payment success', response)
                 },
-                "prefill": {
-                    "name": "Rahul",
-                    "email": "rahul@example.com",
-                    "contact": "9999999999",
-                },
+                // "prefill": {
+                //     "name": "Rahul",
+                //     "email": "rahul@example.com",
+                //     "contact": "9999999999",
+                // },
                 "theme":{
-                    "color": "#3399cc"
+                    "color": "#565656"
                 },
         
             }
@@ -214,8 +255,9 @@ export default function ClientComp({prodArr}) {
             rzp1.open()
 
 
-
         } catch (error) {
+            setPaymentError(true)
+            toast.error('Payment Failed!')
             console.log("payment failed", error)
         }finally{
             SetIsProcessing(false)
@@ -233,7 +275,7 @@ export default function ClientComp({prodArr}) {
       />
     <div className={styles.cart}>
 
-        
+        {/* <Toaster/> */}
         {
             ProdArr.length !== 0 && success ? <>
             <div className={styles.left}>

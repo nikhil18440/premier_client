@@ -43,7 +43,7 @@ const NavbarSm = () => {
    
     if(typeof window !== "undefined"){
       // slideDiv = window.document.getElementById('.items').style.animationName = 'toggleOn';
-      slideDiv = window.document.getElementsByClassName('.items')[0].style.backgroundColor = 'red';
+      // slideDiv = window.document.getElementsByClassName('.items')[0].style.backgroundColor = 'red';
     }
       // slideDiv
    
