@@ -229,7 +229,7 @@ export default function ClientComp({prodArr}) {
                 "currency": "INR", // 3 letter ISO code of the currency
                 "name": "fengxi", // the name of your website
                 "description": "Test Transaction", // the description of the transaction
-                "order_id": data.orderId, // the order_id of
+                // "order_id": data.orderId, 
                 "handler": function (response) {
                     setPaymentSuccess(true)
                     setPaymentError(false)
