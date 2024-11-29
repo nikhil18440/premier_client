@@ -3,6 +3,8 @@
     align-items: center;
     justify-content: center;
     padding: 2rem;
+    font-size: 15px;
+    margin: 3rem 0rem;
 }
 
 .aboutusImg{
@@ -12,7 +14,7 @@
 }
 
 .aboutusDiv{
-    width: 50%;
+    width: 55%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -21,9 +23,11 @@
 
 .aboutusDiv > h4{
     margin-bottom: 2rem;
+    text-align: center;
 }
 .aboutusDiv > h3{
     margin-bottom: 2rem;
+    text-align: center;
 }
 .aboutusDiv > p{
     margin-bottom: 4rem;
@@ -31,9 +35,9 @@
     text-align: center;
 }
 
-@media only screen and (max-width: 700px){
+@media only screen and (max-width: 800px){
     .aboutusDiv{
-        width: 60%;
+        width: 90%;
     }
 
 }

@@ -102,14 +102,14 @@ export default function Contact() {
         </div>
         <div className={styles.formContainer}>
           <form onSubmit={handleSubmit}> {/* Use onSubmit instead of action */}
-            <label className={styles.label} htmlFor="name">Name:</label>
-            <input className={styles.input} type="text" id="name" name="name" onChange={(e) => setname(e.target.value)} />
+            {/* <label className={styles.label} htmlFor="name">Name:</label> */}
+            <input className={styles.input} type="text" id="name" name="name" onChange={(e) => setname(e.target.value)} placeholder='Name' />
             <br />
-            <label className={styles.label} htmlFor="email">Email:</label>
-            <input className={styles.input} type="email" id="email" name="email" onChange={(e) => setEmail(e.target.value)} />
+            {/* <label className={styles.label} htmlFor="email">Email:</label> */}
+            <input className={styles.input} type="email" id="email" name="email" onChange={(e) => setEmail(e.target.value)} placeholder='Email' />
             <br />
-            <label className={styles.label} htmlFor="comment">Comment:</label>
-            <textarea className={styles.textarea} id="comment" name="comment" onChange={(e) => setmessage(e.target.value)} />
+            {/* <label className={styles.label} htmlFor="comment">Comment:</label> */}
+            <textarea className={styles.textarea} id="comment" name="comment" onChange={(e) => setmessage(e.target.value)} placeholder='Comment' />
             <br />
             <button className={styles.button} type="submit">Send</button>
           </form>

@@ -196,26 +196,32 @@ export default function ClientComp(props) {
             <h1 className={styles.righthead}>{data.title}</h1>
             <h4 className={styles.rightprice}>&#8377; {data.price}</h4>
             </div>
-            <form>
+            {/* <form>
               <h3 className={styles.colourName}>Color: {clr}</h3>
               <div className={styles.buttonsclr}>
               <label><input type="radio" name="colours" value="red" onChange={onSlctClr} style={{accentColor:'red'}}/> red</label>
               <label><input type="radio" name="colours" value="blue" onChange={onSlctClr} style={{accentColor:'red'}}/> blue</label>
               <label><input type="radio" name="colours" value="green" onChange={onSlctClr} style={{accentColor:'red'}}/> green</label>
               </div>
-            </form>
+            </form> */}
             <form>
               <h3 className={styles.sizeName}>Select size</h3>
-              <div className={styles.buttonssize}>
-              <label><input type="radio" name="options" value="xs" onChange={onSlctSize} /> xs</label>
+              <select className={styles.buttonsize}>
+              <label><option type="radio" name="options" value="xs" onChange={onSlctSize} > xs</option></label>
+              <label><option type="radio" name="options" value="s" onChange={onSlctSize} > s</option></label>
+              <label><option type="radio" name="options" value="m" onChange={onSlctSize}> m</option></label>
+              <label><option type="radio" name="options" value="l" onChange={onSlctSize}> l</option></label>
+              <label><option type="radio" name="options" value="xl" onChange={onSlctSize}> xl</option></label>
+              <label><option type="radio" name="options" value="xxl" onChange={onSlctSize}> xxl</option></label>
+              {/* <label><input type="radio" name="options" value="xs" onChange={onSlctSize} /> xs</label>
               <label><input type="radio" name="options" value="s" onChange={onSlctSize} /> s</label>
               <label><input type="radio" name="options" value="m" onChange={onSlctSize}/> m</label>
               <label><input type="radio" name="options" value="l" onChange={onSlctSize}/> l</label>
               <label><input type="radio" name="options" value="xl" onChange={onSlctSize}/> xl</label>
-              <label><input type="radio" name="options" value="xxl" onChange={onSlctSize}/> xxl</label>
-              </div>
+              <label><input type="radio" name="options" value="xxl" onChange={onSlctSize}/> xxl</label> */}
+              </select>
             </form>
-            <label><input type="number" className={styles.qty} name="myNumber" value={qty}  min={1} max={100} onChange={onChange}/> qty</label>
+            <label className={styles.qtyLabel}><input type="number" className={styles.qty} name="myNumber" value={qty}  min={1} max={100} onChange={onChange}/> qty</label>
             <button className={styles.cartBtn} onClick={handleSubmit}>ADD TO SHOPPING BAG</button>
            
           </div>

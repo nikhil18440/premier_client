@@ -1,6 +1,7 @@
 .mainWrapper{
   display: flex;
   flex-direction: row;
+  font-size: 15px;
 }
 
 .left{
@@ -129,7 +130,7 @@
     margin-bottom: 2rem;
   }
 
-  @media only screen and (max-width: 700px){
+  @media only screen and (max-width: 1200px){
     .mainWrapper{
       flex-direction: column;
     }
@@ -169,6 +170,29 @@
       align-items: center;
       justify-content: center;
     }
+
+    .input{
+      width: 100%;
+    }
+
+    .formContainer{
+      width: 100%;
+    }
+
+    .container{
+      width: 60%;
+    }
     
   }
 
+
+  @media only screen and (max-width: 700px){
+    .container{
+      width: 100%;
+    }
+
+    .heading, .subheading{
+      text-align: center;
+    }
+
+  }

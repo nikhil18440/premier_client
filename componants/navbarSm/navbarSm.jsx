@@ -52,6 +52,7 @@ const NavbarSm = () => {
 
   return (
     <div className='navbarSm'>
+      {toggle && <div className='invisibleBox'></div>}
 
       <div className='midWrapper'>
 
@@ -82,7 +83,7 @@ const NavbarSm = () => {
             <ul className='items'>
 
               <li className='closeBtn' onClick={() => toggleFunc(false)}>
-                <MdClose size={25}/>
+                <MdClose className='clsBtn' size={25}/>
               </li>
 
               <li className='navItem' onClick={() => toggleFunc(false)}>

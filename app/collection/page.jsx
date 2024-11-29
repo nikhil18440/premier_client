@@ -56,7 +56,7 @@ export default async function page() {
   return (
     <>
 
-      <div className="container">
+      <div className={styles.container}>
         <div className={styles.list}>
           <div className={styles.listItem}>
           {
@@ -68,7 +68,7 @@ export default async function page() {
                         id: item._id
                       }
                     }}>
-                      <img className={styles.prodImg} src={item.images[0]} width={350} height={450} objectFit='cover'/>
+                      <img className={styles.prodImg} src={item.images[0]} objectFit='cover'/>
                       {/* <div c></div> */}
                     </Link>
                     <h4 className={styles.prodTitle}>{item.title}</h4>

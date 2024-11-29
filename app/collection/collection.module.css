@@ -28,14 +28,159 @@
     margin-bottom: 5px;
     margin-top: 10px;
     font-weight: 600;
+    font-size: 12px;
     color: rgb(63, 63, 63);
 }
 
 .prodImg{
     object-fit: cover;
+    width: 300px;
+    height: 330px;
 }
 
 .prodPrice{
     font-weight: 500;
     color: gray;
+    font-size: 13px;
 }
+
+
+/* 
+@media only screen and (max-width: 300px){
+
+    .prod{
+        margin: 20px;
+        padding: 0px;
+    }
+
+    .container{
+        
+    }
+
+    .prodImg{
+        width: 160px;
+        height: 160px;
+    }
+}
+
+
+@media only screen and (max-width: 728px){
+
+    .prod{
+        margin: 20px 10px;
+        padding: 0px;
+    }
+
+    .container{
+       
+    }
+
+    .prodImg{
+        width: 130px;
+        height: 130px;
+    }
+} */
+@media only screen and (max-width: 1200px){
+
+    .prod{
+        margin: 20px 10px;
+        padding: 0px;
+    }
+
+    .container{
+        /* margin: 1rem; */
+        /* margin-top: 100rem; */
+    }
+
+    .prodImg{
+        width: 300px;
+        height: 330px;
+    }
+}
+@media only screen and (max-width: 1000px){
+
+    .prod{
+        margin: 20px 10px;
+        padding: 0px;
+    }
+
+    .container{
+        /* margin: 1rem; */
+        /* margin-top: 100rem; */
+    }
+
+    .prodImg{
+        width: 300px;
+        height: 330px;
+    }
+}
+
+@media only screen and (max-width: 700px){
+
+    .prod{
+        margin: 20px 10px;
+        padding: 0px;
+    }
+
+    .container{
+        /* margin: 1rem; */
+        /* margin-top: 100rem; */
+    }
+
+    .prodImg{
+        width: 250px;
+        height: 280px;
+    }
+}
+@media only screen and (max-width: 600px){
+
+    .prod{
+        margin: 20px 10px;
+        padding: 0px;
+    }
+
+    .container{
+        /* margin: 1rem; */
+        /* margin-top: 100rem; */
+    }
+
+    .prodImg{
+        width: 200px;
+        height: 230px;
+    }
+}
+@media only screen and (max-width: 450px){
+
+    .prod{
+        margin: 100px 10px;
+        padding: 0px;
+    }
+
+    .container{
+        /* margin: 1rem; */
+        /* margin-top: 100rem; */
+    }
+
+    .prodImg{
+        width: 150px;
+        /* height: 180px; */
+    }
+}
+@media only screen and (max-width: 350px){
+
+    .prod{
+        margin: 10px;
+        padding: 0px;
+    }
+
+    .container{
+        /* margin: 1rem; */
+        /* margin-top: 100rem; */
+    }
+
+    .prodImg{
+        width: 140px;
+        height: 150px;
+    }
+}
+

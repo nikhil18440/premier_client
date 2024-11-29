@@ -5,10 +5,10 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: 120vh;
+    height: 100vh;
     margin: 0;
     padding: 0;
-    background-color: #f7f7f7;
+    background-color: hsl(0, 0%, 100%);
   }
   
   .leftSideContainer {
@@ -34,24 +34,78 @@
   }
   
   label {
-    font-size: 16px;
+    font-size: 10px;
     margin-bottom: 10px;
-    color: #666;
+    color: #ff0000;
+    /* margin-top: 0px; */
   }
   
   .inputField {
     width: 100%;
     height: 40px;
     padding: 5px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
+    padding-left: 15px;
+    margin-bottom:5px;
+    border: 1px solid #868686;
     border-radius: 5px;
     font-size: 16px;
+    background-color: transparent;
+  }
+
+  .inputField:invalid{
+    border: 2px solid red;
+  }
+
+  .inputField:valid{
+    border: 1px solid #868686;
   }
   
   .inputField:focus {
-    border-color: #aaa;
+    border-color: #453c3c;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .passDiv{
+    display: flex;
+    border: 1px solid #868686;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .passInput{
+    width: 100%;
+    height: 40px;
+    padding: 5px;
+    padding-left: 15px;
+    /* margin-bottom:5px; */
+    /* border: 1px solid #868686; */
+    /* border-radius: 5px; */
+    border: none;
+    font-size: 16px;
+    background-color: transparent;
+
+  }
+
+  .passInput:focus{
+    outline: none;
+  }
+
+  .passInput:focus {
+    outline: none;
+  }
+
+  #eye{
+    display: block;   
+  }
+
+  #eyeSlash{
+    display: none;
+  }
+
+  .eyeBox{
+    margin-right: 10px;
+    cursor: pointer;
   }
   
   .submitButton {
@@ -154,8 +208,8 @@
 
     .leftSideContainer {
       position: absolute;
-      z-index: 999;
-      background-color: whitesmoke;
-      width: 70%;
+      z-index: 10;
+      background-color: rgb(255, 255, 255);
+      width: 100%;
     }
   }

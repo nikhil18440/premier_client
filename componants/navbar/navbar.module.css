@@ -7,7 +7,7 @@
     /* padding: 1rem 2rem; */
     background-color: #000000;
     border-bottom: 1px solid #ddd;
-    height: 65px;
+    height: 55px;
     color: rgb(211, 211, 211);
     padding: 0px;
     margin: 0px;
@@ -33,7 +33,7 @@
   .logo img {
     /* background-color: antiquewhite; */
     /* width: 70px; */
-    height: 35px;
+    height: 30px;
     object-fit: contain;
   }
   
