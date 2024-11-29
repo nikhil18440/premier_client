@@ -71,13 +71,13 @@ const Navbar = () => {
               Collection
             </Link>
           </li>
-          {
+          {/* {
             userStore.user !== null ? <li className={styles.navItem}>
             <Link href="/order_summary" className={styles.navLink}>
               All orders
             </Link>
           </li> : <></>
-          }
+          } */}
           <li className={styles.navItem}>
             <Link href="/aboutus" className={styles.navLink}>
               About Us

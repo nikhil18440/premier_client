@@ -100,13 +100,13 @@ const NavbarSm = () => {
                 Collection
               </Link>
             </li>
-            {
+            {/* {
               userStore.user !== null && <li className='navItem' onClick={() => toggleFunc(false)}>
               <Link href="/order_summary" className='navLink'>
                 All orders
               </Link>
             </li>
-            }
+            } */}
             <li className='navItem'  onClick={() => toggleFunc(false)}>
               <Link href="/aboutus" className='navLink'>
                 About Us
