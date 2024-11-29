@@ -209,7 +209,7 @@ export default function ClientComp(props) {
               <select className={styles.buttonsize}>
               <label><option type="radio" name="options" value="xs" onChange={onSlctSize} > xs</option></label>
               <label><option type="radio" name="options" value="s" onChange={onSlctSize} > s</option></label>
-              <label><option type="radio" name="options" value="m" onChange={onSlctSize}> m</option></label>
+              <label><option type="radio" selected name="options" value="m" onChange={onSlctSize}> m</option></label>
               <label><option type="radio" name="options" value="l" onChange={onSlctSize}> l</option></label>
               <label><option type="radio" name="options" value="xl" onChange={onSlctSize}> xl</option></label>
               <label><option type="radio" name="options" value="xxl" onChange={onSlctSize}> xxl</option></label>
