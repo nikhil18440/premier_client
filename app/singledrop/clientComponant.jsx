@@ -19,6 +19,7 @@ import axios from 'axios';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { redirect } from 'next/navigation';
 import handleSubmitFunc from './scripts';
+import { Dropdown, DropdownItem,Button, DropdownMenu, DropdownTrigger } from '@nextui-org/dropdown';
 // import 'wiper/swiper-bundle.css'
 
 export default function ClientComp(props) {
@@ -146,13 +147,18 @@ export default function ClientComp(props) {
           
         }
       }
+
+      const [showDropdown, setShowDropdown] = useState(false);
   
 
 
   async function handleSubmit() {
 
-    // if(userStore.user){
-      const saveCart = await handleSubmitFunc(userStore,cartStore,Size,qty,data,token)
+    if (!Size) {
+      alert('Select size')
+    } else {
+      
+        const saveCart = await handleSubmitFunc(userStore,cartStore,Size,qty,data,token)
     
       let prod = {
         productId: data._id,
@@ -165,10 +171,8 @@ export default function ClientComp(props) {
         fetchCart()
         console.log("lessgoooo:",saveCart)
       }
-    // }else{
-      // redirect('/profile')
-    // }
-    
+      
+    }
   }
 
 
@@ -206,20 +210,21 @@ export default function ClientComp(props) {
             </form> */}
             <form>
               <h3 className={styles.sizeName}>Select size</h3>
-              <select className={styles.buttonsize}>
-              <label><option type="radio" name="options" value="xs" onChange={onSlctSize} > xs</option></label>
-              <label><option type="radio" name="options" value="s" onChange={onSlctSize} > s</option></label>
-              <label><option type="radio" selected name="options" value="m" onChange={onSlctSize}> m</option></label>
-              <label><option type="radio" name="options" value="l" onChange={onSlctSize}> l</option></label>
-              <label><option type="radio" name="options" value="xl" onChange={onSlctSize}> xl</option></label>
-              <label><option type="radio" name="options" value="xxl" onChange={onSlctSize}> xxl</option></label>
-              {/* <label><input type="radio" name="options" value="xs" onChange={onSlctSize} /> xs</label>
-              <label><input type="radio" name="options" value="s" onChange={onSlctSize} /> s</label>
-              <label><input type="radio" name="options" value="m" onChange={onSlctSize}/> m</label>
-              <label><input type="radio" name="options" value="l" onChange={onSlctSize}/> l</label>
-              <label><input type="radio" name="options" value="xl" onChange={onSlctSize}/> xl</label>
-              <label><input type="radio" name="options" value="xxl" onChange={onSlctSize}/> xxl</label> */}
-              </select>
+              <div className={styles.dropdown}>
+                <button className={styles.dropDownBtn} type="button" onClick={() => setShowDropdown(!showDropdown)}>
+                  {Size ? Size : 'Select Size'}
+                </button>
+                {showDropdown && (
+                  <div className={styles.dropdownContent}>
+                    <div className={styles.dropdownItem} onClick={() => { setSize('XS'); setShowDropdown(false); }}>XS</div>
+                    <div className={styles.dropdownItem} onClick={() => { setSize('S'); setShowDropdown(false); }}>S</div>
+                    <div className={styles.dropdownItem} onClick={() => { setSize('M'); setShowDropdown(false); }}>M</div>
+                    <div className={styles.dropdownItem} onClick={() => { setSize('L'); setShowDropdown(false); }}>L</div>
+                    <div className={styles.dropdownItem} onClick={() => { setSize('XL'); setShowDropdown(false); }}>XL</div>
+                    <div className={styles.dropdownItem} onClick={() => { setSize('XXL'); setShowDropdown(false); }}>XXL</div>
+                  </div>
+                )}
+              </div>
             </form>
             <label className={styles.qtyLabel}><input type="number" className={styles.qty} name="myNumber" value={qty}  min={1} max={100} onChange={onChange}/> qty</label>
             <button className={styles.cartBtn} onClick={handleSubmit}>ADD TO SHOPPING BAG</button>

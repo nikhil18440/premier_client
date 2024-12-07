@@ -199,6 +199,7 @@
     margin-bottom: 50px;
     background-color: transparent;
     width: 100px;
+    margin-top: 30px;
 }
 
 .qtyLabel{
@@ -245,7 +246,72 @@
     display: block;
 }
 
-@media only screen and (max-width: 1700px){
+/* .dropDownTrigg{
+  height: 40px;
+  padding: 0px 10px;
+}
+
+.styles.dropDownTriggBtn{
+  border: none;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.dropDownMenu{
+  background-color: rgb(236, 236, 236);
+  border: 1px solid gray;
+  width: 200px;
+}
+
+.dropDownItem{
+  cursor: pointer;
+  width: 100%;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+} */
+
+.dropDownBtn {
+  /* background-color: #f1f1f1; */
+  border: 1px solid gray;
+  /* margin-bottom: 2rem; */
+  color: black;
+  padding: 10px;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+  width: 200px;
+}
+
+.dropdownContent {
+  display: block;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdownItem {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+}
+
+.dropdownItem:hover {
+  background-color: #f1f1f1;
+}
+
+/* .dropDownBtn{
+
+} */
+
+
+@media only screen and (max-width: 1200px){
     .left{
         /* display: flex; */
         /* height: 80vh; */
@@ -293,12 +359,12 @@
     }
 
     .righthead{
-      font-size: 20px;
+      font-size: 25px;
     }
 
     .rightprice{
-      font-size: 17px;
-      margin-bottom: 10px;
+      font-size: 23px;
+      margin-bottom: 30px;
     }
 
     .qtyLabel{
@@ -315,14 +381,46 @@
       font-size: large;
       height: 40px;
       display: block;
+
   }
 
   .cartBtn{
     font-size: 15px;
+    margin-bottom: 3rem;
+  }
+
+  .dropDownBtn {
+    width: 100px;
+    font-size: 14px;
+  }
+
+  .qty{
+    margin-top: 10px;
   }
   
 }
 
-@media only screen and (max-width: 1700px){
+@media only screen and (max-width: 400px){
+  .leftImg{
+    width: 100vw;
+    height: 26rem;
+    object-fit: cover !important;
+  }
 
+  .dropDownBtn {
+    width: 100px;
+    font-size: 20px;
+  }
 }
+/* @media only screen and (max-width: 400px) and (max-height: 850){
+  .leftImg{
+    width: 100vw;
+    height: 30rem;
+    object-fit: cover !important;
+  }
+
+  .dropDownBtn {
+    width: 100px;
+    font-size: 20px;
+  }
+} */

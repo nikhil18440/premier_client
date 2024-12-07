@@ -2,6 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    min-height: 100vh;
 }
 
 .listItem{
@@ -9,6 +10,8 @@
     justify-content: space-evenly;
     width: 100%;
     flex-wrap: wrap;
+    height: max-content;
+    align-items: center;
 }
 
 .list{
@@ -22,6 +25,8 @@
 .prod{
     padding: 2rem 0px;
     position: relative;
+    width: 20rem;
+    /* background-color: aqua; */
 }
 
 .prodTitle{
@@ -34,8 +39,9 @@
 
 .prodImg{
     object-fit: cover;
-    width: 300px;
-    height: 330px;
+    /* width: 300px; */
+    height: 25rem;
+    width: 100%;
 }
 
 .prodPrice{
@@ -93,8 +99,8 @@
     }
 
     .prodImg{
-        width: 300px;
-        height: 330px;
+        /* width: 300px;
+        height: 330px; */
     }
 }
 @media only screen and (max-width: 1000px){
@@ -110,16 +116,37 @@
     }
 
     .prodImg{
-        width: 300px;
-        height: 330px;
+        /* width: 300px;
+        height: 330px; */
     }
 }
 
+@media only screen and (max-width: 860px){
+
+    .prod{
+        /* margin: 20px 10px; */
+        padding: 0px;
+        /* background-color: aqua; */
+        width: 15rem;
+    }
+
+    .container{
+        /* margin: 1rem; */
+        /* margin-top: 100rem; */
+    }
+
+    .prodImg{
+        width: 15rem;
+        height: 20rem;
+    }
+}
 @media only screen and (max-width: 700px){
 
     .prod{
-        margin: 20px 10px;
+        /* margin: 20px 10px; */
         padding: 0px;
+        width: 13rem;
+        /* background-color: aqua; */
     }
 
     .container{
@@ -128,15 +155,16 @@
     }
 
     .prodImg{
-        width: 250px;
-        height: 280px;
+        width: 13rem;
+        height: 18rem;
     }
 }
-@media only screen and (max-width: 600px){
+@media only screen and (max-width: 560px){
 
     .prod{
-        margin: 20px 10px;
+        /* margin: 100px 10px; */
         padding: 0px;
+        width: 10rem;
     }
 
     .container{
@@ -145,32 +173,17 @@
     }
 
     .prodImg{
-        width: 200px;
-        height: 230px;
-    }
-}
-@media only screen and (max-width: 450px){
-
-    .prod{
-        margin: 100px 10px;
-        padding: 0px;
-    }
-
-    .container{
-        /* margin: 1rem; */
-        /* margin-top: 100rem; */
-    }
-
-    .prodImg{
-        width: 150px;
+        width: 10rem;
+        height: 13rem;
         /* height: 180px; */
     }
 }
-@media only screen and (max-width: 350px){
+@media only screen and (max-width: 440px){
 
     .prod{
         margin: 10px;
         padding: 0px;
+        width: 9rem;
     }
 
     .container{
@@ -179,8 +192,60 @@
     }
 
     .prodImg{
-        width: 140px;
-        height: 150px;
+        width: 100%;
+        height: 12rem;
+    }
+}
+@media only screen and (max-width: 400px){
+
+    .prod{
+        margin: 10px;
+        padding: 0px;
+        width: 8rem;
+    }
+
+    .listItem{
+        height: 20rem;
+    }
+
+    .container{
+        /* margin: 1rem; */
+        /* margin-top: 100rem; */
+    }
+
+    .prodImg{
+        width: 100%;
+        height: 10rem;
+    }
+}
+@media only screen and (max-width: 360px){
+
+    .prod{
+        margin: 10px;
+        padding: 0px;
+        width: 7rem;
+        height: 10rem;
+    }
+
+    .container{
+        /* margin: 1rem; */
+        /* margin-top: 100rem; */
+    }
+
+    .listItem{
+        padding: 0px;
+        margin: 0px;
+        height: 20rem;
+    }
+
+    .list{
+        padding: 0xp;
+        margin: 0px;
+    }
+
+    .prodImg{
+        width: 100%;
+        height: 8rem;
     }
 }
 
