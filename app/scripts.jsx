@@ -1,42 +1,68 @@
+'use client'
+import { setCart } from '@/redux/cartReducer'
+import axios from 'axios'
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
-export default async function Findcart(props) {
 
+export async function FetchCart() {
+
+    const dispatch = useDispatch()
+    const userStore = useSelector(state => state.user)
+
+        console.log('going')
+          if(userStore.user){
+              const user = userStore.user
+              
+                try {
     
-    if(props.cartStore.cart === null){
-        
-        const res = await axios.get(`${process.env.API_ENDPOINT}/cart/find/${props.userStore.user._id}`,{
-            headers: {
-            token: props.token
-            }
-        })
-        if(res.data === null && props.userStore.user){
-            
-            const newCart = await axios.post(`${process.env.API_ENDPOINT}/cart/${props.userStore.user._id}`, {
-                userId: props.userStore.user._id,
-                products: [],
-                total: 0
-            }, {headers: {token:props.token}})
-            
-            dispatch(setCart(newCart.data))
-            return newCart.data
-        
+                  const resCart = await axios.get(`${process.env.API_ENDPOINT}/cart/find/${user._id}`,{
+                    headers: {
+                    token:  `Bearer ${user.accessToken}`
+                    }
+                  })
+                  
+                  console.log('found an existing cart:', resCart.data)
+                  
+                  if(resCart.data===null){
+                    const newCart = await axios.post(`${process.env.API_ENDPOINT}/cart/${user._id}`, {
+                      userId: user._id,
+                      products: [],
+                      total: 0
+                    }, {headers: {token:`Bearer ${user.accessToken}`}})
+                    
+                    if(typeof window !== 'undefined'){
+                      localStorage.setItem('cartId', JSON.stringify(newCart.data))
+                    }
+                    dispatch(setCart(newCart.data))
+                  }else{
+                    if(typeof window !== 'undefined'){
+                      localStorage.setItem('cartId', JSON.stringify(resCart.data))
+                    }
+                    dispatch(setCart(resCart.data))
+                  }
+    
+                } catch (error) {
+                  console.log(error)
+                }
+              
         }else{
-            if(res.data){
             
-            dispatch(setCart(res.data))
-            return res.data
-
-            // res.data.products.map(item => {
-            //   removefromDbCart({Cart: res.data, product: item})
-            // })
-            }
-            
+                console.log('hiiiiiii')
+                if(typeof window !== 'undefined'){
+                    if(!localStorage.getItem('cartId')){
+                        var newCart = {
+                            products: [],
+                            total: 0
+                        }
+                        localStorage.setItem('cartId', JSON.stringify(newCart))
+                    }
+                }
+              
         }
-    }else{
-        console.log("the else loop is executing");
-        return false
-    }
+      
+
+      
     
-    
-}
+      }
+

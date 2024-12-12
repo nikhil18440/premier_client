@@ -63,11 +63,11 @@ export default function ClientComp({prodArr}) {
 
 
 
-    useLayoutEffect(() => {
-      if(userStore.user === null){
-        redirect('/')
-      }
-    }, [])
+    // useLayoutEffect(() => {
+    //   if(userStore.user === null){
+    //     redirect('/')
+    //   }
+    // }, [])
 
     // let ProdArr = prodArr.reverse()
     // const [ProdArr,setProdArr] = useState([])
@@ -87,6 +87,7 @@ export default function ClientComp({prodArr}) {
 
     // remove an item
     async function handleRemove(item) {
+        console.log('uuuuuuuuuu:',item)
         try {
             let totalPrice = 0
             if(cartStore.total === 0){
@@ -97,30 +98,49 @@ export default function ClientComp({prodArr}) {
             let products = cartStore.cart.products.filter(v => v._id !== item[3])
             console.log('prr:',products)
             console.log(cartStore.cart.products[0].productId, item[0]._id)
-            const res = await axios.put(`${process.env.API_ENDPOINT}/cart/${userStore.user._id}`,{
-            // userId: userStore.user._id,
-            _id: cartStore.cart._id,
-            products: products,
-            total: totalPrice - parseInt(item[0].price)*parseInt(item[2])
-            },{
-            headers: {
-                token: `Bearer ${userStore.user.accessToken}`
-            }
-            })
-
-            if(res.data){
-                console.log('yes',cartStore.cart.products, item[3])
+            
+            if(userStore.user){
+                const res = await axios.put(`${process.env.API_ENDPOINT}/cart/${userStore.user._id}`,{
+                // userId: userStore.user._id,
+                _id: cartStore.cart._id,
+                products: products,
+                total: totalPrice - parseInt(item[0].price)*parseInt(item[2])
+                },{
+                headers: {
+                    token: `Bearer ${userStore.user.accessToken}`
+                }
+                })
+    
+                if(res.data){
+                    console.log('yes',cartStore.cart.products, item[3])
+                    setProdArr([])
+                    filterArr(item[3])
+                    // let prodPrice = parseInt(item[0].price)*parseInt(item[2])
+                    dispatch(setCart(res.data))
+     
+                    if(typeof window !== 'undefined'){
+                        localStorage.setItem('cartId',JSON.stringify(res.data))
+                    }
+                }
+            }else{
+                let productsOffline2 = cartStore.cart.products.map((v) => {console.log(v)})
+                let productsOffline = cartStore.cart.products.filter(v => v.productId !== item[3])
+                console.log('offline:', cartStore.cart.products, productsOffline, item[3])
+                let noUserCart = {
+                    products: products,
+                    total: totalPrice - parseInt(item[0].price)*parseInt(item[2])
+                }
                 setProdArr([])
                 filterArr(item[3])
-                let prodPrice = parseInt(item[0].price)*parseInt(item[2])
-                dispatch(setCart(res.data))
-                // dispatch(delProduct(item[3]))
-                console.log('mycart:',cartStore)
-                // dispatch(setCartTotalMinus(prodPrice))
+                // setProdArr([])
+                // filterArr(item[3])
+
+                dispatch(setCart(noUserCart))
+                
                 if(typeof window !== 'undefined'){
-                    localStorage.setItem('cartId',JSON.stringify(res.data))
+                    localStorage.setItem('cartId',JSON.stringify(noUserCart))
                 }
-                }
+            }
         } catch (error) {
             console.log(error)
         }
@@ -130,27 +150,39 @@ export default function ClientComp({prodArr}) {
 
     // clear the cart
     async function handleClearCart() {
-        try {
-            const res = await axios.put(`${process.env.API_ENDPOINT}/cart/${userStore.user._id}`,{
-
-            _id: cartStore.cart._id,
-            products: [],
-            total: 0
-            },{
-            headers: {
-                token: `Bearer ${userStore.user.accessToken}`
+        if(userStore.user){
+            try {
+                const res = await axios.put(`${process.env.API_ENDPOINT}/cart/${userStore.user._id}`,{
+    
+                _id: cartStore.cart._id,
+                products: [],
+                total: 0
+                },{
+                headers: {
+                    token: `Bearer ${userStore.user.accessToken}`
+                }
+                })
+    
+                if(res.data){
+                    
+                    dispatch(setCart(res.data))
+                    if(typeof window !== 'undefined'){
+                        localStorage.setItem('cartId',JSON.stringify(res.data))
+                    }
+                    }
+            } catch (error) {
+                console.log(error)
             }
-            })
+        }else{
+            let noUserCart = {
+                products: [],
+                total: 0
+            }
 
-            if(res.data){
-                
-                dispatch(setCart(res.data))
-                if(typeof window !== 'undefined'){
-                    localStorage.setItem('cartId',JSON.stringify(res.data))
-                }
-                }
-        } catch (error) {
-            console.log(error)
+            dispatch(setCart(noUserCart))
+            if(typeof window !== 'undefined'){
+                localStorage.setItem('cartId',JSON.stringify(noUserCart))
+            }
         }
     }
 

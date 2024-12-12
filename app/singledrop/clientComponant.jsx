@@ -20,19 +20,50 @@ import { useEffect, useLayoutEffect, useState } from 'react';
 import { redirect } from 'next/navigation';
 import handleSubmitFunc from './scripts';
 import { Dropdown, DropdownItem,Button, DropdownMenu, DropdownTrigger } from '@nextui-org/dropdown';
+import Link from 'next/link';
+import Modal from '@/componants/modal/Modal';
 // import 'wiper/swiper-bundle.css'
 
 export default function ClientComp(props) {
 
 
   // getting each product from api
+
+  const [cat, setcat] = useState([])
+  const [findCat, setFindCat] = useState(false)
   
   var data
   if(props.data!==null){
     data = JSON.parse(props.data)
+
+    async function getCat(categories) {
+      try {
+        const res = await axios.post(`${process.env.API_ENDPOINT}/product/categories`, {
+          categories: categories
+        })
+        console.log('catss:', res.data)
+        setcat(res.data)
+        setFindCat(true)
+      } catch (error) {
+        console.log(error)
+        setFindCat(false)
+      }
+    }
+    
+
+    if(!findCat){
+      getCat(data.categories)
+    }
+
+    
   }else{
     data = null
   }
+
+  setTimeout(() => {
+    console.log('issss:', cat)
+
+  }, 5000);
 
   // importing carts and user store
   const userStore = useSelector(state => state.user)
@@ -74,11 +105,11 @@ export default function ClientComp(props) {
   const dispatch = useDispatch()
 
   const [noUser, setNoUser] = useState(false)
-  const makeLogin = useLayoutEffect(() => {
-    if(!userStore.user){
-      redirect('/login')
-    }
-  }, [])
+  // const makeLogin = useLayoutEffect(() => {
+  //   if(!userStore.user){
+  //     redirect('/login')
+  //   }
+  // }, [])
 
   const [addedProd, setaddedProd] = useState(null)
 
@@ -109,7 +140,7 @@ export default function ClientComp(props) {
 
     // }, [cartStore.cart])
 
-    async function fetchCart() {
+    async function fetchCart(saveCart) {
       if(userStore.user){
           const user = userStore.user
           
@@ -145,13 +176,19 @@ export default function ClientComp(props) {
               console.log(error)
             }
           
+        }else{
+          if(typeof window !== 'undefined'){
+            localStorage.setItem('cartId', JSON.stringify(saveCart))
+          }
+
+          dispatch(setCart(saveCart))
         }
       }
 
       const [showDropdown, setShowDropdown] = useState(false);
   
 
-
+  const [openModal, setOpenModal] = useState(false)
   async function handleSubmit() {
 
     if (!Size) {
@@ -168,11 +205,17 @@ export default function ClientComp(props) {
       if(saveCart){
         dispatch(addProduct(prod))
         dispatch(setCartTotal(parseInt(data.price)*parseInt(qty)))
-        fetchCart()
+        fetchCart(saveCart)
+        setOpenModal(true)
         console.log("lessgoooo:",saveCart)
       }
       
     }
+  }
+
+  function handleModal() {
+    setOpenModal(false)
+    redirect('/cart')
   }
 
 
@@ -180,7 +223,19 @@ export default function ClientComp(props) {
     <>
 
       <div className={styles.singleproduct}>
-       
+        
+      {openModal && 
+        <div className={styles.modal_overlay}>
+          <div className={styles.modal_content}>
+              <h2>Product added to cart</h2>
+              <div className={styles.modal_buttons}>
+              <button className={styles.modal_button} onClick={() => setOpenModal(false)}>Continue Shopping</button>
+              <button className={styles.modal_button} onClick={() => handleModal()}>Checkout</button>
+              </div>
+          </div>
+        </div>
+      }
+
         <div className={styles.top}>
           {
             data ? 
@@ -237,10 +292,17 @@ export default function ClientComp(props) {
         </div>
 
         <div className={styles.bottom}>
-          <h1 className={styles.bottomHead}>Product details</h1>
+          <h2 className={styles.bottomHead}>view similar products</h2>
           
 
-          <div className={styles.prodDesc}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi, aspernatur repellendus, corporis libero quo vitae cum consequuntur facere corrupti illum officiis magnam nemo! Temporibus voluptatem ea enim quos libero accusantium.</div>
+          <div className={styles.catList}>
+            {cat && cat.map((item) => (
+              <Link href={`/singledrop?id=${item._id}`} className={styles.catLink}>
+                <img key={item._id} src={item.images[0]} alt="" />
+              </Link>
+            ))}
+          </div>
+         
             
           
             

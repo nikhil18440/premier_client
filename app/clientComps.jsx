@@ -8,19 +8,22 @@ import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { setCart } from '../redux/cartReducer';
 import Navbar from '../componants/navbar/Navbar';
-import Findcart from './scripts';
+import Findcart, { FetchCart } from './scripts';
 import Broken from '@/componants/broken/broken';
 import model1 from '../public/model1.jpg'
 
-export default function ClientComp(props) {
+export default async function ClientComp(props) {
 
     const user = useSelector(state => state.user)
+
+    
 
     const dispatch = useDispatch()
 
     var data = null
     if(props.data){
       data = JSON.parse(props.data)
+
     }else{
       data = null
     }
@@ -41,6 +44,24 @@ export default function ClientComp(props) {
   const userStore = useSelector(state => state.user)
 
   var token = null
+
+  if(userStore.user===null){
+    if(typeof window !== 'undefined'){
+      let findCart = localStorage.getItem('cartId')
+    if(!findCart){
+      localStorage.setItem('cartId',JSON.stringify(
+        {
+          products: [],
+          total: 0
+        }
+      ))
+      dispatch(setCart({
+        products: [],
+        total: 0
+      }))
+    }
+    }
+  }
   
 
     

@@ -7,6 +7,7 @@ import axios from "axios";
 import ClientComp from "./clientComps.jsx";
 import { Suspense } from "react";
 import Loader from "@/componants/loader/Loader";
+import FetchCart from "./scripts";
 
 export default async function Home() {
 
@@ -20,9 +21,8 @@ export default async function Home() {
   }
   var data = await getData()
   data = JSON.stringify(data)
-  console.log(data)
-  console.log(process.env.HI)
-  
+
+
   
   
 

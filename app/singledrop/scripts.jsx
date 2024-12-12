@@ -40,7 +40,35 @@ export default async function handleSubmitFunc(userStore,cartStore,Size,qty,data
           console.log(error)
         }
       }else{
-        // setNoUser(true)
+
+        let prod = {
+          productId: data._id,
+          size: Size,
+          quantity: qty
+        }
+
+        let totalPrice = cartStore.total
+
+        // if(cartStore.cart.total === 0){
+        //   totalPrice = 0
+        //   console.log('its zero',cartStore)
+        // }else{
+        //   totalPrice = cartStore.cart.total
+        //   console.log('its not zero',cartStore)
+
+        // }
+        
+        let cartData = {
+          products: [...cartStore.cart.products, prod],
+          total: totalPrice + parseInt(data.price)*parseInt(qty)
+        }
+        console.log('workkkk',cartData)
+        if(typeof window !== 'undefined'){
+          localStorage.setItem('cartId', JSON.stringify(cartData))
+        }
+
+        return cartData
+        
       }
 
 }

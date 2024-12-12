@@ -16,14 +16,25 @@ export default async function ServerComp(props) {
           console.log(error)
         }
     }
+
     
+  
+   
 
     const data = await getData()
     var dataStr
+    var catStr
+
     if(data){
+      // let categories = data.categories
+      // let cat = await getCat(categories)
+
       dataStr = JSON.stringify(data)
+      // catStr = JSON.stringify(cat)
+      
     }else{
       dataStr = null
+      // catStr = null
     }
 
     

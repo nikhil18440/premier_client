@@ -11,28 +11,26 @@ export default function page(props) {
     <>
       {/* <Image src={tshirt} height={200} className={styles.aboutusImg}/> */}
       <div className={styles.aboutus}>
-      <div className={styles.aboutusDiv}>
-      <h3>Welcome to {names.comp_name}!</h3>
-      <p>At {names.comp_name}, we believe that fashion is more than just clothing—it's a way of expressing yourself and embracing your individuality. Our mission is to empower women through stylish, high-quality apparel that makes you feel confident, beautiful, and ready to take on the world.</p>
+      About Fengxi
 
-      <h4>Our Story</h4>
-      <p>{names.comp_name} was founded with a passion for fashion and a vision to create a brand that celebrates the unique style and spirit of every woman. Our journey began with a simple idea: to offer a curated collection of women's clothing that combines elegance, comfort, and affordability. Today, we are proud to be a go-to destination for fashion-forward women who appreciate timeless classics and contemporary trends alike.</p>
+Welcome to Fengxi, where fashion meets artistry, and simplicity finds its perfect expression in luxury. At Fengxi, we design for those who appreciate elegance in its purest form—a blend of minimalism, sophistication, and timeless allure.
 
-      <h4>Our Collections</h4>
-      <p>Our collections are thoughtfully designed and meticulously crafted to suit a variety of tastes and occasions. We take pride in using high-quality fabrics and paying attention to every detail to ensure that our pieces are not only stylish but also durable and comfortable.</p>
+Our Philosophy
+Fengxi was born from the belief that true luxury isn’t about opulence or excess. It’s about the quiet confidence of understated design, the touch of premium fabrics, and the craftsmanship that brings simplicity to life. We celebrate the art of minimalism, creating clothing that speaks volumes with its subtle details, clean lines, and flawless tailoring.
 
-      <h4>Our Commitment</h4>
-      <p>At {names.comp_name}, we are committed to providing an exceptional shopping experience. From the moment you visit our website to the time you receive your order, we strive to exceed your expectations. Our customer service team is always here to assist you.</p>
+What We Offer
+Our collection is carefully curated to bring you versatile, timeless pieces that elevate your wardrobe. Each item is designed with a focus on quality and comfort, ensuring that Fengxi’s clothing not only looks exquisite but feels indulgent to wear. From effortless basics to statement essentials, our designs are a reflection of modern elegance tailored to fit your lifestyle.
 
-      <h4>Sustainability and Ethics</h4>
-      <p>We believe in responsible fashion. {names.comp_name} is dedicated to sustainable and ethical practices, ensuring that our products are made with care for both people and the planet. We work closely with our suppliers to promote fair labor practices and environmentally friendly production methods.</p>
+Our Commitment to You
+We are dedicated to crafting garments that inspire confidence and celebrate individuality. Each piece is made with meticulous attention to detail, combining premium materials with thoughtful design to create clothing that feels as luxurious as it looks. Fengxi is for those who value quality and aesthetics, who believe in investing in pieces that stand the test of time.
 
-      <h4>Join the {names.comp_name} Community</h4>
-      <p>Fashion is more fun when shared! Join our community of fashion enthusiasts and stay updated on the latest trends, new arrivals, and exclusive offers. Follow us on social media and sign up for our newsletter to be a part of the {names.comp_name} family.</p>
+Our Vision
+As we grow, we aspire to expand our collection, continuing to redefine minimalism with elegance and luxury. We aim to become your go-to destination for wardrobe staples that exude sophistication while remaining versatile and sustainable.
 
-      {/* <h4>Thank You</h4> */}
-      <p style={{ fontWeight:700, fontSize:'18px', color:'darkgrey'}}>Thank you for choosing {names.comp_name}. We are excited to be a part of your fashion journey and look forward to helping you express your unique style with confidence and grace.</p>
-      </div>
+Join the Fengxi Journey
+When you choose Fengxi, you’re choosing more than just clothing; you’re embracing a lifestyle of effortless luxury and timeless beauty. We invite you to explore our collection and discover the perfect balance of minimal design and opulent comfort.
+
+Experience the essence of Fengxi—where minimal meets magnificent, and every detail tells a story of elegance.
       </div>
     </>
   )

@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
 import { setCart } from '@/redux/cartReducer'
 import Loader from '@/componants/loader/Loader'
+import FetchCart from '../scripts'
 
 export default function page() {
 
@@ -62,6 +63,7 @@ export default function page() {
 
     useEffect(() => {
         async function fetchCart() {
+          console.log('going')
             if(userStore.user){
                 const user = userStore.user
                 
@@ -97,8 +99,23 @@ export default function page() {
                     console.log(error)
                   }
                 
-              }
-              setfoundCart(true)
+                }else{
+                  if(!localStorage.getItem('cartId')){
+                    localStorage.setItem('cartId',JSON.stringify(
+                      {
+                        products: [],
+                        total: 0
+                      }
+                    ))
+                    dispatch(setCart(
+                      {
+                        products: [],
+                        total: 0
+                      }
+                    ))
+                  }
+                }
+                setfoundCart(true)
         }
 
         if (!foundCart) {

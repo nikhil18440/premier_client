@@ -95,22 +95,23 @@ const Navbar = () => {
 
       <div className={styles.right}>
         {
-          userStore.user ? <ul className={styles.icons}>
+         <ul className={styles.icons}>
           <li className={styles.iconItem}>
             <Link href="/cart" className={styles.iconLink}>
               <CiShoppingCart className="fas fa-shopping-cart" size={30}/>
             </Link>
-            <span className={styles.cartItemNum} style={cartNum===null || cartNum===0 ? {display:'none'}: {display:'block'}}>{cartStore.cart ? cartStore.cart.products.length : 0}</span>
+            <span className={styles.cartItemNum} style={cartNum===null || cartNum===0 ? {display:'none'}: {display:'block'}}>{cartStore.cart && cartStore.cart.products ? cartStore.cart.products.length : 0}</span>
           </li>
           <li className={styles.iconItem}>
             <Link href="/profile" className={styles.iconLink}>
               <CiUser className="fas fa-list-alt" size={30}/>
             </Link>
           </li>
-        </ul> : <div className={styles.rightBtns}>
+          <div className={styles.rightBtns}>
           <Link href='/login' className={styles.loginBtn}>login</Link>
           <Link href='/register' className={styles.registerBtn}>signup</Link>
         </div>
+        </ul> 
         }
       </div>
       
