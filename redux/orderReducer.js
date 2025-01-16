@@ -14,7 +14,7 @@ import { useEffect } from 'react'
 const orderSlice = createSlice({
     name: "order",
     initialState: {
-        orderList: null,
+        orderList: [],
     },
     reducers: {
         setOrder: (state,action) => {

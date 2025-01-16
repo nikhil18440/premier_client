@@ -16,6 +16,8 @@ import Script from 'next/script'
 import Razorpay from 'razorpay'
 import { addtoOrder } from '@/redux/orderReducer'
 import toast, { Toaster } from 'react-hot-toast'
+import { FaCross } from 'react-icons/fa'
+import { MdClose } from 'react-icons/md'
 
 export default function ClientComp({prodArr}) {
 
@@ -124,7 +126,7 @@ export default function ClientComp({prodArr}) {
                 }
             }else{
                 let productsOffline2 = cartStore.cart.products.map((v) => {console.log(v)})
-                let productsOffline = cartStore.cart.products.filter(v => v.productId !== item[3])
+                let productsOffline = cartStore.cart.products.filter(v => v._id !== item[3])
                 console.log('offline:', cartStore.cart.products, productsOffline, item[3])
                 let noUserCart = {
                     products: products,
@@ -195,12 +197,17 @@ export default function ClientComp({prodArr}) {
     const [paymentSuccess, setPaymentSuccess] = useState(false)
     const [paymentError, setPaymentError] = useState(false)
 
+    const [openForm, setOpenForm] = useState(false)
+
     useEffect(() => {
         
         if(paymentSuccess){
-            createOrder()
-            handleClearCart()
-            redirect('/profile')
+
+            setOpenForm(true)
+            
+            // createOrder()
+            // handleClearCart()
+            // redirect('/profile')
           }
     }, [paymentSuccess])
 
@@ -217,18 +224,34 @@ export default function ClientComp({prodArr}) {
         }
         console.log('everrrrr:',products)
       
+        
         try {
-            const newOrder = await axios.post(`${process.env.API_ENDPOINT}/order/${userStore.user._id}`, {
-                userId: userStore.user._id,
-                total: cartStore.total,
-                status: 'pending',
-                quantity: totalQuantity,
-                products: products
-            }, {headers: {token:`Bearer ${userStore.user.accessToken}`}})
-            
-            dispatch(addtoOrder(newOrder.data))
-            
-            console.log(newOrder.data)
+            if(userStore.user){
+                const newOrder = await axios.post(`${process.env.API_ENDPOINT}/order`, {
+                    userId: userStore.user._id,
+                    total: cartStore.total,
+                    status: 'pending',
+                    quantity: totalQuantity,
+                    products: products
+                }, {headers: {token:`Bearer ${userStore.user.accessToken}`}})
+                
+                dispatch(addtoOrder(newOrder.data))
+                
+                console.log(newOrder.data)
+            }else{
+                const newOrder = await axios.post(`${process.env.API_ENDPOINT}/order`, {
+                    // userId: userStore.user._id,
+                    total: cartStore.total,
+                    status: 'pending',
+                    quantity: totalQuantity,
+                    products: products,
+                    userDetails: {}
+                })
+                
+                dispatch(addtoOrder(newOrder.data))
+                
+                console.log(newOrder.data)
+            }
 
         } catch (error) {
             console.log(error)
@@ -236,65 +259,117 @@ export default function ClientComp({prodArr}) {
     }
     
 
+    let funnn = false
     const handlePayment = async () => {
         console.log('handling paymnet')
         SetIsProcessing(true)
+        setOpenForm(true)
 
-        try {
-            //create order
-            const response = await fetch(`${process.env.API_ENDPOINT}/payment`,{
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'token': `Bearer ${userStore.user.accessToken}`
+        if(funnn){
+            try {
+                //create order
+                const response = await fetch(`${process.env.API_ENDPOINT}/payment`,{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        // 'token': `Bearer ${userStore.user.accessToken}`
+                        },
+                        body: JSON.stringify({
+                            total: cartStore.total,
+                        })
+                })
+                const data = await response.json()
+    
+                // INITIALIZE RAZORPAY
+                const options = {
+                    "key": 'rzp_test_sM994cU3j8AY7A', // Enter the Key ID generated from
+                    "amount": cartStore.total*100, // integer amount
+                    "currency": "INR", // 3 letter ISO code of the currency
+                    "name": "fengxi", // the name of your website
+                    "description": "Test Transaction", // the description of the transaction
+                    // "order_id": data.orderId, 
+                    "handler": function (response) {
+                        setPaymentSuccess(true)
+                        setPaymentError(false)
+                        console.log('payment success', response)
                     },
-                    body: JSON.stringify({
-                        total: cartStore.total,
-                    })
-            })
-            const data = await response.json()
-
-            // INITIALIZE RAZORPAY
-            const options = {
-                "key": 'rzp_test_sM994cU3j8AY7A', // Enter the Key ID generated from
-                "amount": cartStore.total*100, // integer amount
-                "currency": "INR", // 3 letter ISO code of the currency
-                "name": "fengxi", // the name of your website
-                "description": "Test Transaction", // the description of the transaction
-                // "order_id": data.orderId, 
-                "handler": function (response) {
-                    setPaymentSuccess(true)
-                    setPaymentError(false)
-                    console.log('payment success', response)
-                },
-                // "prefill": {
-                //     "name": "Rahul",
-                //     "email": "rahul@example.com",
-                //     "contact": "9999999999",
-                // },
-                "theme":{
-                    "color": "#565656"
-                },
-        
-            }
-
-            // const rzp1 = new Razorpay({
-            //     key_id: 'rzp_test_sM994cU3j8AY7A',
-            //     key_secret: 'PpJukXmg78wH3mmq3MV7SXZR'
-            // },options)
+                    // "prefill": {
+                    //     "name": "Rahul",
+                    //     "email": "rahul@example.com",
+                    //     "contact": "9999999999",
+                    // },
+                    "theme":{
+                        "color": "#565656"
+                    },
             
-            const rzp1 = new window.Razorpay(options)
-            rzp1.open()
-
-
-        } catch (error) {
-            setPaymentError(true)
-            toast.error('Payment Failed!')
-            console.log("payment failed", error)
-        }finally{
-            SetIsProcessing(false)
+                }
+    
+                // const rzp1 = new Razorpay({
+                //     key_id: 'rzp_test_sM994cU3j8AY7A',
+                //     key_secret: 'PpJukXmg78wH3mmq3MV7SXZR'
+                // },options)
+                
+                const rzp1 = new window.Razorpay(options)
+                rzp1.open()
+    
+    
+            } catch (error) {
+                setPaymentError(true)
+                toast.error('Payment Failed!')
+                console.log("payment failed", error)
+            }finally{
+                SetIsProcessing(false)
+            }
         }
     }
+
+
+    // final form validation
+    const [formData, setFormData] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phoneNumber: '',
+        state: '',
+        address: '',
+        pincode: ''
+    });
+
+    const [isFormValid, setIsFormValid] = useState(false);
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prevData => ({
+            ...prevData,
+            [name]: value
+        }));
+        validateForm();
+    };
+
+    const validateForm = () => {
+        const { firstName, lastName, email, phoneNumber, state, address, pincode } = formData;
+        const isValid = 
+            firstName && 
+            lastName && 
+            /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && 
+            /^\d{10}$/.test(phoneNumber) && 
+            state && 
+            address && 
+            /^\d{6}$/.test(pincode);
+        setIsFormValid(isValid);
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // Handle form submission logic here
+        console.log('Form submitted:', formData);
+    };
+
+    const handleClose = () => {
+        setOpenForm(false)
+        SetIsProcessing(false)
+        // Logic to close the form (e.g., set a state to hide the form)
+    };
     
     
 
@@ -306,6 +381,62 @@ export default function ClientComp({prodArr}) {
         src="https://checkout.razorpay.com/v1/checkout.js"
       />
     <div className={styles.cart}>
+
+        {
+            openForm &&
+            <div className={styles.finalDetails}>
+            <button onClick={handleClose} className={styles.closeButton}>
+                <MdClose size={20}/>
+            </button>
+            <form className={styles.form} onSubmit={handleSubmit}>
+                <h2>Checkout Information</h2>
+                <div className={styles.formGroup}>
+                    {/* <label htmlFor="firstName">First Name:</label> */}
+                    <input placeholder='First Name' type="text" id="firstName" name="firstName" value={formData.firstName} onChange={handleChange} required />
+                </div>
+                <div className={styles.formGroup}>
+                    {/* <label htmlFor="lastName">Last Name:</label> */}
+                    <input placeholder='Last Name' type="text" id="lastName" name="lastName" value={formData.lastName} onChange={handleChange} required />
+                </div>
+                <div className={styles.formGroup}>
+                    {/* <label htmlFor="email">Email:</label> */}
+                    <input placeholder='Email' type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
+                </div>
+                <div className={styles.formGroup}>
+                    {/* <label htmlFor="phoneNumber">Phone Number:</label> */}
+                    <input placeholder='Phone Number' type="tel" id="phoneNumber" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} required />
+                </div>
+                <div className={styles.formGroup}>
+                    {/* <label htmlFor="state">State:</label> */}
+                    <input placeholder='State' type="text" id="state" name="state" value={formData.state} onChange={handleChange} required />
+                </div>
+                <div className={styles.formGroup}>
+                    {/* <label htmlFor="address">Address:</label> */}
+                    <textarea placeholder='Address' type="text" id="address" name="address" value={formData.address} onChange={handleChange} required />
+                </div>
+                <div className={styles.formGroup}>
+                    {/* <label htmlFor="pincode">Pincode:</label> */}
+                    <input placeholder='Pincode' type="text" id="pincode" name="pincode" value={formData.pincode} onChange={handleChange} required />
+                </div>
+                <button type="submit" className={styles.submitButton} disabled={!isFormValid}>Checkout</button>
+            </form>
+
+            <div className={styles.summary}>
+                <h3>Order Summary</h3>
+                <div className={styles.summaryItem}>
+                    <span>Subtotal:</span>
+                    <span>&#8377; {cartStore.total}</span>
+                </div>
+                <div className={styles.summaryItem}>
+                    <span>Total:</span>
+                    <span>&#8377; {cartStore.total}</span>
+                </div>
+                <div className={styles.freeShipping}>
+                    <p>Free shipping all over India</p>
+                </div>
+                </div>
+            </div>
+        }
 
         {/* <Toaster/> */}
         {

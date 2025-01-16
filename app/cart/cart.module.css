@@ -110,6 +110,93 @@
     height: 100vh;
 }
 
+.finalDetails {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full height of the viewport */
+    width: 100vw; /* Full width of the viewport */
+    background-color: white; /* Background color */
+    color: black; /* Text color */
+    
+    padding: 20px; /* Padding around the content */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.closeButton {
+    position: absolute; /* Positioning the close button */
+    top: 20px; /* Distance from the top */
+    right: 20px; /* Distance from the right */
+    background-color: transparent; /* Transparent background */
+    border: none; /* No border */
+    color: black; /* Text color */
+    font-size: 16px; /* Font size */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+.form {
+    display: flex;
+    flex-direction: column; /* Stack form elements vertically */
+    width: 100%; /* Full width */
+    max-width: 400px; /* Maximum width for the form */
+}
+
+.formGroup {
+    margin-bottom: 15px; /* Space between form groups */
+}
+
+.formGroup label {
+    margin-bottom: 5px; /* Space between label and input */
+    font-weight: bold; /* Bold labels */
+}
+
+.formGroup input, .formGroup textarea {
+    width: 100%; /* Full width of the input */
+    padding: 10px; /* Padding inside the input */
+    border: 1px solid #ccc; /* Light grey border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+    box-sizing: border-box; /* Include padding in width */
+}
+
+.formGroup textarea {
+    height: 8rem;
+    resize: none;
+}
+
+.formGroup input:focus {
+    border-color: black; /* Change border color on focus */
+    outline: none; /* Remove default outline */
+}
+
+.submitButton {
+    background-color: black; /* Black background */
+    color: white; /* White text */
+    padding: 10px; /* Padding inside the button */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.submitButton:disabled {
+    background-color: grey; /* Grey background when disabled */
+    cursor: not-allowed; /* Not allowed cursor */
+}
+
+.submitButton:hover:not(:disabled) {
+    background-color: #333; /* Darker shade on hover */
+}
+
+
+
+
+
 @media only screen and (max-width: 1200px){
     .cart{
         flex-direction: column;

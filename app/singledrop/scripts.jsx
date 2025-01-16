@@ -44,7 +44,8 @@ export default async function handleSubmitFunc(userStore,cartStore,Size,qty,data
         let prod = {
           productId: data._id,
           size: Size,
-          quantity: qty
+          quantity: qty,
+          _id: cartStore.cart.products.length
         }
 
         let totalPrice = cartStore.total

@@ -20,7 +20,7 @@ const ProfilePage = () => {
 
   useLayoutEffect(() => {
     if(userStore.user === null){
-      redirect('/')
+      // redirect('/')
     }
   }, [])
 
