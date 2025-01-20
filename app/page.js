@@ -8,6 +8,8 @@ import ClientComp from "./clientComps.jsx";
 import { Suspense } from "react";
 import Loader from "@/componants/loader/Loader";
 import FetchCart from "./scripts";
+import Carousel from "@/componants/carousal/Carousal";
+import Carousel2 from "@/componants/Carousal2/Carousal2";
 
 export default async function Home() {
 
@@ -31,6 +33,7 @@ export default async function Home() {
   return (
     <> 
     <Suspense fallback={<Loader/>}>
+    <Carousel2/>
       <ClientComp data={data}/>
     </Suspense>
     </>

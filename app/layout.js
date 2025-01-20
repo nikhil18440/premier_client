@@ -10,6 +10,7 @@ import Loader from "@/componants/loader/Loader";
 import Navbar from "@/componants/navbar/Navbar";
 import Footer from "@/componants/footer/Footer";
 import NavbarSm from "@/componants/navbarSm/navbarSm";
+import Navbar2 from "@/componants/navbar2/Navbar2";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -33,7 +34,7 @@ export default function RootLayout({ children }) {
         <ReduxProvider>
             <Toaster position="bottom-center"/>
             <Suspense fallback={<Loader/>}>
-              <Navbar/>
+              <Navbar2/>
               {children}
               <Footer/>
             </Suspense>
